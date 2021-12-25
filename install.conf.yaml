@@ -1,15 +1,16 @@
 - defaults:
     link:
-      relink: true
+    relink: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - link:
     ~/.zshrc: zshrc
     ~/.gitconfig: gitconfig
-#- create:
-#    - ~/Code
+# - create:
+#     - ~/Code
 
-#- shell:
-#  - [git submodule update --init --recursive, Installing submodules]
-
+- shell:
+    - command: ./setup_homebrew.zsh
+      stdout: true
+      stderr: true
