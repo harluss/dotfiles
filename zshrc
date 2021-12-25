@@ -47,6 +47,6 @@ jdk() {
 alias ls='ls -lAFh'
 
 # Function to create and enter a new directory
-function mkcd() {
+mkcd() {
   mkdir -p "$@" && cd "$_";
 }

@@ -7,10 +7,8 @@
 - link:
     ~/.zshrc: zshrc
     ~/.gitconfig: gitconfig
-
 #- create:
-#    - ~/Work
-#    - ~/hey/you/guys
+#    - ~/Code
 
 #- shell:
 #  - [git submodule update --init --recursive, Installing submodules]
