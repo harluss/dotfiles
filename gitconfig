@@ -1,0 +1,9 @@
+[user]
+	email = 26788867+harluss@users.noreply.github.com
+	name = harluss
+[core]
+	excludesfile = /Users/harlus/.gitignore
+	editor = code --wait
+	ignorecase = false
+[init]
+	defaultBranch = main
