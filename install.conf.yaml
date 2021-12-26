@@ -1,12 +1,16 @@
 - defaults:
     link:
-    relink: true
+      relink: true
 
 - clean: ["~"]
 
 - link:
     ~/.zshrc: zshrc
     ~/.gitconfig: gitconfig
+    ~/.config/bat:
+      create: true
+      path: config/bat
+
 # - create:
 #     - ~/Code
 
