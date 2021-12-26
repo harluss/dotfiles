@@ -38,13 +38,8 @@ alias exa="exa -laFh --git"
 
 # Functions
 # VS Code zsh command
-code () { 
+code() { 
   VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*;
-}
-
-# Create and enter a new directory
-mkcd() {
-  mkdir -p "$@" && cd "$_";
 }
 
 # Switch between different JDK versions
@@ -57,4 +52,9 @@ jdk() {
   version=$1
   export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
   java -version
+}
+
+# Create and enter a new directory
+mkcd() {
+  mkdir -p "$@" && cd "$_";
 }
