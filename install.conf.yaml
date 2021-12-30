@@ -5,6 +5,7 @@
 - clean: ['~']
 
 - link:
+    ~/.asdfrc: asdfrc
     ~/.zshrc: zshrc
     ~/.zshenv: zshenv
     ~/.gitconfig: gitconfig
@@ -20,5 +21,8 @@
       stdout: true
       stderr: true
     - command: ./setup_nodejs.zsh
+      stdout: true
+      stderr: true
+    - command: ./setup_java.zsh
       stdout: true
       stderr: true
