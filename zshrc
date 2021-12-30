@@ -5,17 +5,13 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export HOMEBREW_CASK_OPTS='--no-quarantine'
 export NULLCMD=bat
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-
 # Set name of the theme
 ZSH_THEME='agnoster'
 
 # ZSH plugins
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions asdf)
 
+source $(brew --prefix asdf)/libexec/asdf.sh
 source $ZSH/oh-my-zsh.sh
 
 # POWERLEVEL9k
@@ -26,9 +22,6 @@ POWERLEVEL9K_TIME_FORMAT='%D{%H:%M }'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=237'
 
-# For my custom terminal commands
-source ~/.my_custom_commands.sh
-
 # Aliases
 alias ls='exa -laFh --git'
 alias exa='exa -laFh --git'
@@ -38,18 +31,6 @@ alias trail='<<<${(F)path}'
 # VS Code zsh command
 code() { 
   VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*;
-}
-
-# Switch between different JDK versions
-jdk() {
-	if [[ ! $1 ]]; then
-		/usr/libexec/java_home -V;
-		return 0
-	fi
-
-  version=$1
-  export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
-  java -version
 }
 
 # Create and enter a new directory

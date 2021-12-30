@@ -1,14 +1,15 @@
 #!/usr/bin/env zsh
 
-echo "\n<<< Starting Homebrew Setup >>>\n"
+echo "\n=== Starting Homebrew Setup ===\n"
 
 if exists brew; then
-  echo "brew exists, skipping install"
+  echo "Homebrew already installed!"
 else
-  echo "brew doesn't exist, continuing with install"
+  echo "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew analytics off
 fi
 
-# Currently, you can't do `brew bundle --no-quarantine` as an option.
-# Instead, set in zshrc: export HOMEBREW_CASK_OPTS="--no-quarantine".
+# There's no `brew bundle --no-quarantine` option.
+# Set in zshrc (export HOMEBREW_CASK_OPTS="--no-quarantine") instead.
 brew bundle --verbose
