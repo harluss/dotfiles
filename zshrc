@@ -28,12 +28,22 @@ alias exa='exa -laFh --git'
 alias trail='<<<${(F)path}'
 
 # Functions
-# VS Code zsh command
+# Open VS Code
 code() { 
   VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*;
 }
 
-# Create and enter a new directory
+# Show diff using bat
+diffb() {
+  diff "$1" "$2" | bat -ldiff
+}
+
+# Show diff using VS Code
+diffc() {
+  code --diff "$1" "$2"
+}
+
+# Create and navigate to a new (nested) directory
 mkcd() {
   mkdir -p "$@" && cd "$_";
 }
