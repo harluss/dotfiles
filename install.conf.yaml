@@ -1,6 +1,10 @@
 - defaults:
     link:
       relink: true
+      force: true
+    shell:
+      stdout: true
+      stderr: true
 
 - clean: ['~']
 
@@ -19,15 +23,12 @@
 - shell:
     - description: 'Installing Homebrew with brews and casks'
       command: ./setup_homebrew.zsh
-      stdout: true
-      stderr: true
 
-    - description: 'Installing Node and setting global version'
+    - description: 'Installing Node and setting a global version'
       command: ./setup_nodejs.zsh
-      stdout: true
-      stderr: true
 
-    - description: 'Installing JDKs and setting global version'
+    - description: 'Installing JDKs and setting a global version'
       command: ./setup_java.zsh
-      stdout: true
-      stderr: true
+
+    - description: 'Changing macOS System Preferences'
+      command: sudo ./setup_macos.zsh

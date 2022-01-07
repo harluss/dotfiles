@@ -15,3 +15,4 @@ Work in progess...
 - [ ] Uninstall unwanted preinstalled apps
 - [ ] Add script for setting up SSH fir GitHub
 - [ ] Add Mackup for syncing settings of third party apps?
+- [ ] Add global .gitignore
