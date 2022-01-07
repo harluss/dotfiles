@@ -29,6 +29,45 @@ _general_setup() {
   defaults write -g AppleScrollerPagingBehavior -bool true
 }
 
+_desktop_and_screen_saver_setup() {
+  # Desktop & Screen Saver > Screen Saver > (Disable) Show screen saver after
+  defaults -currentHost write com.apple.screensaver idleTime -int 0
+}
+
+_dock_and_menu_bar_setup() {
+  # Dock & Menu Bar > Size / (Enable) Magnification
+  defaults write com.apple.dock tilesize -int 28
+  defaults write com.apple.dock largesize -int 64
+  defaults write com.apple.dock magnification -bool true
+
+  # Dock & Menu Bar > Minimize windows using: Scale effect
+  defaults write com.apple.dock mineffect -string "scale"
+
+  # Dock & Menu Bar > (Disable) Minimize windows into application icon
+  defaults write com.apple.dock minimize-to-application -bool false
+
+  # Dock & Menu Bar > (Disable) Show recent applications in Dock
+  defaults write com.apple.dock show-recents -bool false
+
+  # Dock & Menu Bar > Spotlight > (Disable) Show in menu bar
+  defaults write ~/Library/Preferences/ByHost/com.apple.Spotlight MenuItemHidden -bool true
+
+  # Dock & Menu Bar Extra: Right click on Downloads stack > Display as: Folder
+  # Note: This works with Downloads being either the only or the first object there as it modifies the object at index 0
+  /usr/libexec/PlistBuddy -c "Set :persistent-others:0:tile-data:displayas 1" ~/Library/Preferences/com.apple.dock.plist
+
+  # Dock & Menu Extra: Remove all (default) app icons from Dock
+  # NOTE: This is only really useful when setting up a new Mac.
+  defaults write com.apple.dock persistent-apps -array ""
+
+  # TODO: Dock & Menu Extra: Add selected apps to Dock (persistent-app array)
+}
+
+_mission_control_setup() {
+  # Mission Control > (Disable) Automatically rearrange Spaces based on most recent use
+  defaults write com.apple.dock mru-spaces -bool false
+}
+
 _mouse_and_trackpad_setup() {
   # Built-in trackpad:  AppleMultitouchTrackpad
   # Bluetooth trackpad: AppleBluetoothMultitouch
@@ -48,10 +87,6 @@ _mouse_and_trackpad_setup() {
   # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
   # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 0
   # defaults write -g ContextMenuGesture -int 1
-
-  # Trackpad > Point & Click > (Enable) Silent clicking
-  defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 0
-  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad ActuationStrength -int 0
 
   # Trackpad > More Gestures > (Enable) App Expose: Swipe down with four fingers
   defaults write com.apple.dock showAppExposeGestureEnabled -bool true
@@ -74,40 +109,20 @@ _keyboard_setup() {
   defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 
   # Keyboard > Shortcuts > Use keyboard navigation to move focus between controls
+  # TODO: check default setting
   defaults write -g AppleKeyboardUIMode -int 3
 
   # Keyboard > Shortcuts > Spotlight > (Unbind) Show Spotlight search
-  # TODO: check if persists after system reboot
-  defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 64 "
-    <dict>
-      <key>enabled</key>
-      <false/>
-      <key>value</key>
-      <dict>
-        <key>parameters</key>
-        <array>
-          <integer>65535</integer>
-          <integer>49</integer>
-          <integer>1048576</integer>
-        </array>
-        <key>type</key>
-        <string>standard</string>
-      </dict>
-    </dict>
-  "
-  # Or
-  # /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist \
-  #   -c "Delete :AppleSymbolicHotKeys:64" \
-  #   -c "Add :AppleSymbolicHotKeys:64:enabled bool false" \
-  #   -c "Add :AppleSymbolicHotKeys:64:value:parameters array" \
-  #   -c "Add :AppleSymbolicHotKeys:64:value:parameters: integer 65535" \
-  #   -c "Add :AppleSymbolicHotKeys:64:value:parameters: integer 49" \
-  #   -c "Add :AppleSymbolicHotKeys:64:value:parameters: integer 1048576" \
-  #   -c "Add :AppleSymbolicHotKeys:64:type string standard"
-  #
-  ## Possible different approach:
-  ## https://superuser.com/questions/1211108/remove-osx-spotlight-keyboard-shortcut-from-command-line
-  ## https://apple.stackexchange.com/questions/405937/how-can-i-enable-keyboard-shortcut-preference-after-modifying-it-through-defaul
+  /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist \
+    -c "Delete :AppleSymbolicHotKeys:64" \
+    -c "Add :AppleSymbolicHotKeys:64:enabled bool false" \
+    -c "Add :AppleSymbolicHotKeys:64:value:parameters array" \
+    -c "Add :AppleSymbolicHotKeys:64:value:parameters: integer 65535" \
+    -c "Add :AppleSymbolicHotKeys:64:value:parameters: integer 49" \
+    -c "Add :AppleSymbolicHotKeys:64:value:parameters: integer 1048576" \
+    -c "Add :AppleSymbolicHotKeys:64:type string standard"
+  # defaults read com.apple.symbolichotkeys.plist > /dev/null
+  /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 }
 
 _bluetooth_setup() {
@@ -118,7 +133,7 @@ _bluetooth_setup() {
 
 _sound_setup() {
   # Sound > Sound Effects > (Disable) Play sound on startup
-  # sudo nvram StartupMute=%01
+  sudo nvram StartupMute=%01
 
   # Sound > Sound Effects > (Disable) Play feedback when volume is changed
   defaults write com.apple.sound.beep.feedback -bool false
@@ -128,7 +143,7 @@ _sound_setup() {
   defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound -int 18
 }
 
-_finder_and_desktop_setup() {
+_finder_setup() {
   # Finder Preferences > General > Show these items on the desktop > (Enable) Connected Servers
   # TODO: check default settings match the ones below
   # defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
@@ -136,30 +151,29 @@ _finder_and_desktop_setup() {
   # defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
   defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 
-  # Finder Preferences > General > New Finder windows show: Home
+  # Finder > Preferences > General > New Finder windows show: Home
   defaults write com.apple.finder NewWindowTarget -string "PfHm"
-  # defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
-  # Finder Preferences > Advanced > (Enable) Show all file extensions
+  # Finder > Preferences > Advanced > (Enable) Show all file extensions
   defaults write -g AppleShowAllExtensions -bool true
 
-  # Finder Preferences > Advanced > (Disable) Show warning before changing an extension
+  # Finder > Preferences > Advanced > (Disable) Show warning before changing an extension
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-  # Finder Preferences > Advanced > (Enable) Keep folders on top > In windows / On Desktop
+  # Finder > Preferences > Advanced > (Enable) Keep folders on top > In windows / On Desktop
   defaults write com.apple.finder _FXSortFoldersFirst -bool true
   defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
 
-  # Finder Preferences > Advanced > When performing a search: Search the Current Folder
+  # Finder > Preferences > Advanced > When performing a search: Search the Current Folder
   defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
-  # Finder > View Menu > Show Status Bar
+  # Finder > View Menu > (Enable) Show Status Bar
   defaults write com.apple.finder ShowStatusBar -bool true
 
-  # Finder > View Menu > Show Path Bar
+  # Finder > View Menu > (Enable) Show Path Bar
   defaults write com.apple.finder ShowPathbar -bool true
 
-  # Finder > View Menu > View Options > Always open in list view
+  # Finder > View Menu > View Options > (Enable) Always open in list view
   # Column view option: `clmv`
   defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
@@ -167,53 +181,34 @@ _finder_and_desktop_setup() {
 
   # TODO: find way to setup Finder Preferences > Sidebar
 
-  # Finder Other: User Folder (right click on any folder inside) > Show View Options > Show Library Folder
+  # Finder Extra: User Folder (right click on any folder inside) > Show View Options > Show Library Folder
   chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 
-  # Right click on desktop > Show View Options > (Enable) Show item info
+  # Finder Extra: Show hidden files
+  defaults write com.apple.finder AppleShowAllFiles -bool true
+
+  # Finder Extra: (Enable) Quick Look text selection
+  # TODO: check if enabled by default in Monterey
+  # defaults write com.apple.finder QLEnableTextSelection -bool true
+
+  # Finder Extra: Right click on desktop > Show View Options > (Enable) Show item info
   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-  /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-  /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+  # /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+  # /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+
+  # Finder Extra: Right click on desktop > Use Stacks
+  /usr/libexec/PlistBuddy -c "Set :FXPreferredGroupBy Kind" ~/Library/Preferences/com.apple.finder.plist
+
+  # Finder Extra: Right click on desktop > Group Stacks By: Kind
+  /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:GroupBy Kind" ~/Library/Preferences/com.apple.finder.plist
+  /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy dateAdded" ~/Library/Preferences/com.apple.finder.plist
 }
 
-_dock_and_menu_bar_setup() {
-  # Dock & Menu Bar > Size / (Enable) Magnification
-  defaults write com.apple.dock tilesize -int 28
-  defaults write com.apple.dock largesize -int 64
-  defaults write com.apple.dock magnification -bool true
-
-  # Dock & Menu Bar > Minimize windows using
-  defaults write com.apple.dock mineffect -string "scale"
-
-  # Dock & Menu Bar > (Disable) Minimize windows into application icon
-  defaults write com.apple.dock minimize-to-application -bool false
-
-  # Dock & Menu Bar > (Disable) Show recent applications in Dock
-  defaults write com.apple.dock show-recents -bool false
-
-  # Dock & Menu Bar > Spotlight > (Disable) Show in menu bar
-  defaults write ~/Library/Preferences/ByHost/com.apple.Spotlight MenuItemHidden -bool true
+_displays_setup() {
+  # TODO: Displays > Night Shift: find defaults keys
 }
 
-# Dock & Menu Bar Other: Remove all (default) app icons from the Dock
-# NOTE: This is only really useful when setting up a new Mac.
-defaults write com.apple.dock persistent-apps -array ""
-
-# TODO: Dock & Menu Bar Other: Add selected apps to Dock (persistent-app array)
-
-# TODO: Dock & Menu Bar Other: Right click on download stack > Display as: Folder (presistent-other array)
-
-# Mission Control > (Disable) Automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool false
-
-# Mission Control Other: Speed up Mission Control animations
-defaults write com.apple.dock expose-animation-duration -float 0.05
-
-### DISPLAY ###
-
-# TODO: find defaults keys for Night Shift settings
-
-_security_and_privacy_settings() {
+_security_and_privacy_setup() {
   # Security & Privacy > General > Require password after sleep or screen saver begins: Immediately
   defaults write com.apple.screensaver askForPassword -int 1
   defaults write com.apple.screensaver askForPasswordDelay -int 0
@@ -228,115 +223,110 @@ _security_and_privacy_settings() {
   # Security & Privacy > Firewall > Firewall Options > Enable Stealth mode
   sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -bool true
 
-  # Security & Privacy > Firewall > Firewall Options > (Disable) Automatically allow signed software to receive incoming connections
+  # Security & Privacy > Firewall > Firewall Options > (Disable) Automatically allow built-in software to receive incoming connections
   # sudo defaults write /Library/Preferences/com.apple.alf allowsignedenabled -bool false
 
   # Security & Privacy > Firewall > Firewall Options > (Disable) Automatically allow downloaded signed software to receive incoming connections
   # sudo defaults write /Library/Preferences/com.apple.alf allowdownloadsignedenabled -bool false
 
   # Security & Privacy > Privacy > Apple Advertising > (Disable) Personalised Ads
-  defatults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
-
-  # Security & Privacy > Privacy > Advertising > (Enable) Limit Ad Tracking
-  # GUI toggle removed in Monterey?
+  defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
+  defaults write com.apple.AdLib allowIdentifierForAdvertising -bool false
   defaults write com.apple.AdLib forceLimitAdTracking -bool true
+}
+
+_users_and_groups_setup() {
+  # Users & Groups > Guest User > (Disable) Allow guests to log in to this computer
+  sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
   
-  # TODO: find defaults keys and disable Security & Privacy > Privacy > Analytics & Improvements 
+  # TODO: check default settings for Users & Groups > Login Options > (Disable) Automatic login / Display login windows as (List of users) / (Disable) Show fast user switching menu as
 }
 
+_sharing_setup() {
+  # TODO: check default settings and find defaults keys for File Sharing
 
-# Users & Groups > Guest User > (Disable) Allow guests to log in to this computer
-sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+  # Sharing > (Disable) File sharing > Options > Share files and folders using SMB / AFP
+  # TODO: check if persitent
+  sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.AppleFileServer.plist
+  sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.smbd.plist
 
-# TODO: check default settings for Users & Groups > Login Options > (Disable) Automatic login / Display login windows as (List of users) / (Disable) Show fast user switching menu as
+  # Sharing > Computer Name
+  # sudo scutil --set ComputerName "Mini $HOSTNAME"
+  # sudo scutil --set HostName "$HOSTNAME"
+  # sudo scutil --set LocalHostName "$HOSTNAME"
+  # sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$HOSTNAME"
 
-### SHARING ###
+  # TODO: Sharing > (Enable) AirPlay Receiver: Current user - find defaults keys
 
-# TODO: check default settings and find defaults keys for File Sharing
-
-# Sharing > (Disable) File sharing > Options > Share files and folders using SMB / AFP
-# TODO: check if persitent
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.AppleFileServer.plist
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.smbd.plist
-
-# Sharing > Computer Name
-# sudo scutil --set ComputerName "Mini $HOSTNAME"
-# sudo scutil --set HostName "$HOSTNAME"
-# sudo scutil --set LocalHostName "$HOSTNAME"
-# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$HOSTNAME"
-
-# Sharing Other: Finder (Side bar) > AirDrop > Allow me to be discovered by 
-# Possible values: No One as "Off", Contacts Only, Everyone
-defaults write com.apple.sharingd DiscoverableMode -string "Off"
-
-_extra_settings() {
-
+  # Sharing Extra: Finder (Side bar) > AirDrop > Allow me to be discovered by: Off
+  # Possible values: No One as "Off", Contacts Only, Everyone
+  defaults write com.apple.sharingd DiscoverableMode -string "Off"
 }
-# Desktop & Screen Saver > Start after: Never
-defaults -currentHost write com.apple.screensaver idleTime -int 0
 
-# Other: Screenshots > Disable screenshot shadow
-defaults write com.apple.screencapture disable-shadow -bool true
+_extra_settings_setup() {
+  # Extra: Disable screenshot shadow
+  defaults write com.apple.screencapture disable-shadow -bool true
 
-# Other: Screenshots > Save in JPG format
-# Possible values: BMP, GIF, JPG, PDF, PNG, TIFF
-defaults write com.apple.screencapture type -string "JPG"
+  # Extra: Save screenshots in JPG format
+  # Possible values: BMP, GIF, JPG, PDF, PNG, TIFF
+  defaults write com.apple.screencapture type -string "JPG"
 
-# Other: Disable .DS_Store file creation on network or USB volumes
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+  # Extra: Disable .DS_Store file creation on network or USB volumes
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+  defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
-# Other: Expand Save panel by default
-defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
-defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
+  # Extra: Expand Save panel by default
+  defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
+  defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
 
-# Other: Expand Print panel by default
-defaults write -g PMPrintingExpandedStateForPrint -bool true
-defaults write -g PMPrintingExpandedStateForPrint2 -bool true
+  # Extra: Expand Print panel by default
+  defaults write -g PMPrintingExpandedStateForPrint -bool true
+  defaults write -g PMPrintingExpandedStateForPrint2 -bool true
 
-# Other: Automatically quit printer app once the print jobs complete
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+  # Extra: Automatically quit printer app once the print jobs complete
+  defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-# Other: Save to disk (not to iCloud) by default
-defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+  # Extra: Save to disk (not to iCloud) by default
+  defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
 
-# Keyboard Other: Disable press-and-hold for keys in favor of key repeat
-defaults write -g ApplePressAndHoldEnabled -bool false
+  # Extra: Disable press-and-hold for keys in favor of key repeat
+  defaults write -g ApplePressAndHoldEnabled -bool false
 
-# Finder > Advanced > Show hidden files
-defaults write com.apple.finder AppleShowAllFiles -bool true
+  # Extra: (Disable) Quick Look animation
+  defaults write -g QLPanelAnimationDuration -float 0
 
-# Finder Other: (Enable) Quick Look text selection
-# TODO: check if enabled by default in Monterey
-# defaults write com.apple.finder QLEnableTextSelection -bool true
+  # Extra: (Disable) Window animations
+  defaults write com.apple.finder DisableAllAnimations -bool true
 
-# Finder Other: (Disable) Quick Look animation
-# defaults write -g QLPanelAnimationDuration -float 0
+  # Extra: Speed up Window resize animation
+  defaults write -g NSWindowResizeTime -float 0.001
 
-# Finder Other: (Disable) Window animations
-# defaults write com.apple.finder DisableAllAnimations -bool true
+  # Extra: Enable subpixel font rendering on non-Apple LCDs
+  defaults write -g AppleFontSmoothing -int 2
 
-# Finder Other: Speed up Window resize animation
-defaults write -g NSWindowResizeTime -float 0.001
-
-# Display Other: Enable subpixel font rendering on non-Apple LCDs
-defaults write -g AppleFontSmoothing -int 2
+  # Extra: Speed up Mission Control animations
+  defaults write com.apple.dock expose-animation-duration -float 0.05
+}
 
 _software_update_setup(){
   # TODO: check default settings and find defaults keys in Monterey
 
   # Software Update > Automatically keep my Mac up to date
+  # Software Update > Advanced > Install macOS updates
+  # sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticallyInstallMacOSUpdates -bool false
+
+  # Software Update > Advanced > Check for updates
+  # sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticCheckEnabled -bool true
+
+  # Software Update > Advanced > Install system data files and security updates
+  # sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist ConfigDataInstall -bool false
+  # sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist CriticalUpdateInstall -bool false
+
+  # Software Update > Advanced > Download new updates when available
   # sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticDownload -bool true
 
-  # Software Update > Advanced
-  # sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticCheckEnabled -bool true
-  # sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist ConfigDataInstall -bool false
-  # sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticallyInstallMacOSUpdates -bool false
-  # sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist CriticalUpdateInstall -bool false
+  # Software Update > Advanced > Install app updates from the App Store
   # sudo defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool true
-
-  # App Store: Enable the automatic update check
-  # defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
 }
 
 _accessibility_setup() {
@@ -356,7 +346,7 @@ _accessibility_setup() {
   defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 }
 
-_energy_saver() {
+_energy_saver_setup() {
   # Energy Saver > Turn display off after
   # TODO: check default setting
   sudo pmset -a displaysleep 10
@@ -404,18 +394,29 @@ _siri_setup() {
 
 # TODO: Add settings for other app i.e. Chrome, iTerm2...
 
-_general_setup
-_mouse_and_trackpad_setup
-_keyboard_setup
-_finder_and_desktop_setup
-_bluetooth_setup
 _accessibility_setup
-_energy_saver
-_sound_setup
-_security_and_privacy_settings
-_time_machine_setup
+_bluetooth_setup
+_desktop_and_screen_saver_setup
+_displays_setup
+_dock_and_menu_bar_setup
+_energy_saver_setup
+_extra_settings_setup
+_finder_setup
+_general_setup
+_keyboard_setup
+_mission_control_setup
+_mouse_and_trackpad_setup
+# _safari_setup
+_security_and_privacy_setup
+_sharing_setup
 _siri_setup
 _software_update_setup
+_sound_setup
+# _terminal_setup
+_time_machine_setup
+_users_and_groups_setup
+
+# /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
 for app in "Activity Monitor" "Dock" "Finder" "Safari" "SystemUIServer"; do
   killall "${app}" &> /dev/null
