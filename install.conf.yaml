@@ -9,7 +9,9 @@
 - clean: ['~']
 
 - link:
+    ~/.antigenrc: antigenrc
     ~/.asdfrc: asdfrc
+    ~/.p10k.zsh: p10k.zsh
     ~/.zshrc: zshrc
     ~/.zshenv: zshenv
     ~/.gitconfig: gitconfig
@@ -17,8 +19,8 @@
       create: true
       path: config/bat
 
-# - create:
-#     - ~/Code
+- create:
+    - ~/Code
 
 - shell:
     - description: 'Installing Homebrew with brews and casks'
