@@ -17,15 +17,18 @@ path=(
   $path
 )
 
-source $(brew --prefix)/share/antigen/antigen.zsh
+ANTIGEN_PATH=~/.dotfiles
+source $ANTIGEN_PATH/antigen/antigen.zsh
 source $(brew --prefix asdf)/libexec/asdf.sh
 
 # Load Antigen config
 antigen init ~/.antigenrc
 
 # Aliases
-alias exa='exa -laFh --git'
-alias ls='exa -laFh --git'
+alias exa='exa --group-directories-first --icons'
+alias exaa='exa --group-directories-first --icons -a'
+alias exal='exa --group-directories-first --icons -lh --git'
+alias exaal='exa --group-directories-first --icons -lha --git'
 alias man='batman'
 alias trail='<<<${(F)path}'
 

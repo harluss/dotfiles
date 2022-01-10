@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if exists brew; then
+if command_exists brew; then
   echo "Skipping install of Homebrew. It's already installed."
 else
   echo "Installing Homebrew..."

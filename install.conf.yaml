@@ -23,14 +23,20 @@
     - ~/Code
 
 - shell:
+    - description: 'Installing Meslo Nerd Font'
+      command: cp ./fonts/*.ttf ~/Library/Fonts
+
     - description: 'Installing Homebrew with brews and casks'
       command: ./setup_homebrew.zsh
 
-    - description: 'Installing Node and setting a global version'
-      command: ./setup_nodejs.zsh
+    - description: 'Installing Zsh plugins'
+      command: source ~/.zshrc && antigen reset
 
-    - description: 'Installing JDKs and setting a global version'
-      command: ./setup_java.zsh
+    # - description: 'Installing Node and setting a global version'
+    #   command: ./setup_nodejs.zsh
 
-    - description: 'Changing macOS System Preferences'
-      command: sudo ./setup_macos.zsh
+    # - description: 'Installing JDKs and setting a global version'
+    #   command: ./setup_java.zsh
+
+    # - description: 'Changing macOS System Preferences'
+    #   command: sudo ./setup_macos.zsh
