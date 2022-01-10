@@ -32,11 +32,14 @@
     - description: 'Installing Zsh plugins'
       command: source ~/.zshrc && antigen reset
 
-    # - description: 'Installing Node and setting a global version'
-    #   command: ./setup_nodejs.zsh
+    - description: 'Setting iTerm2 preferences'
+      command: ./setup_iterm2
 
-    # - description: 'Installing JDKs and setting a global version'
-    #   command: ./setup_java.zsh
+    - description: 'Installing Node and setting a global version'
+      command: ./setup_nodejs.zsh
 
-    # - description: 'Changing macOS System Preferences'
+    - description: 'Installing JDKs and setting a global version'
+      command: ./setup_java.zsh
+
+    # - description: 'Setting macOS System Preferences'
     #   command: sudo ./setup_macos.zsh

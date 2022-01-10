@@ -11,7 +11,7 @@
 # Close any open System Preferences panes, to prevent them from overriding new settings
 osascript -e 'tell application "System Preferences" to quit'
 
-_accessibility_setup() {
+_accessibility() {
   # Accessibility > Pointer Control > Trackpad Options > Enable dragging > three finger drag
   defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
@@ -28,22 +28,22 @@ _accessibility_setup() {
   defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 }
 
-_bluetooth_setup() {
+_bluetooth() {
   # Bluetooth > (Check) Show Bluetooth in menu bar
   defaults write com.apple.controlcenter "NSStatusItem Visible Bluetooth" -bool true
   defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 18
 }
 
-_desktop_and_screen_saver_setup() {
+_desktop_and_screen_saver() {
   # Desktop & Screen Saver > Screen Saver > (Uncheck) Show screen saver after
   defaults -currentHost write com.apple.screensaver idleTime -int 0
 }
 
-_displays_setup() {
+_displays() {
   # TODO: Displays > Night Shift: find defaults keys
 }
 
-_dock_and_menu_bar_setup() {
+_dock_and_menu_bar() {
   # Dock & Menu Bar > Size / (Check) Magnification
   defaults write com.apple.dock tilesize -int 32
   defaults write com.apple.dock largesize -int 64
@@ -94,7 +94,7 @@ _dock_and_menu_bar_setup() {
   # TODO: Dock & Menu Extra: Add selected apps to Dock (persistent-apps array)
 }
 
-_energy_saver_setup() {
+_energy_saver() {
   # NOTE: setup for a mac with power adapter (battery settings not included).
   # Energy Saver > Turn display off after
   # TODO: check default setting
@@ -107,52 +107,7 @@ _energy_saver_setup() {
   sudo pmset -c womp 0
 }
 
-_hidden_settings_setup() {
-  # Hidden: Disable screenshot shadow
-  defaults write com.apple.screencapture disable-shadow -bool true
-
-  # Hidden: Save screenshots in JPG format
-  # Possible values: BMP, GIF, JPG, PDF, PNG, TIFF
-  defaults write com.apple.screencapture type -string "JPG"
-
-  # Hidden: Disable .DS_Store file creation on network or USB volumes
-  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-  defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
-
-  # Hidden: Expand Save panel by default
-  defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
-  defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
-
-  # Hidden: Expand Print panel by default
-  defaults write -g PMPrintingExpandedStateForPrint -bool true
-  defaults write -g PMPrintingExpandedStateForPrint2 -bool true
-
-  # Hidden: Automatically quit printer app once the print jobs complete
-  defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
-  # Hidden: Save to disk (not to iCloud) by default
-  defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
-
-  # Hidden: Disable press-and-hold for keys in favor of key repeat
-  defaults write -g ApplePressAndHoldEnabled -bool false
-
-  # Hidden: (Disable) Quick Look animation
-  defaults write -g QLPanelAnimationDuration -float 0
-
-  # Hidden: (Disable) Window animations
-  defaults write com.apple.finder DisableAllAnimations -bool true
-
-  # Hidden: Speed up Window resize animation
-  defaults write -g NSWindowResizeTime -float 0.001
-
-  # Hidden: Enable subpixel font rendering on non-Apple LCDs
-  defaults write -g AppleFontSmoothing -int 2
-
-  # Hidden: Speed up Mission Control animations
-  defaults write com.apple.dock expose-animation-duration -float 0.05
-}
-
-_finder_setup() {
+_finder() {
   # Finder Preferences > General > Show these items on the desktop > (Enable) Connected Servers
   # TODO: check default settings match the ones below
   # defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
@@ -241,7 +196,7 @@ _finder_setup() {
   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy dateAdded" ~/Library/Preferences/com.apple.finder.plist
 }
 
-_general_setup() {
+_general() {
   # General > Appearance: Dark
   defaults write -g AppleInterfaceStyle -string "Dark"
   defaults delete -g AppleInterfaceStyleSwitchesAutomatically > /dev/null 2>&1
@@ -257,7 +212,52 @@ _general_setup() {
   # defaults -currentHost write com.apple.coreservices.useractivityd ActivityReceivingAllowed -bool true
 }
 
-_keyboard_setup() {
+_hidden_settings() {
+  # Hidden: Disable screenshot shadow
+  defaults write com.apple.screencapture disable-shadow -bool true
+
+  # Hidden: Save screenshots in JPG format
+  # Possible values: BMP, GIF, JPG, PDF, PNG, TIFF
+  defaults write com.apple.screencapture type -string "JPG"
+
+  # Hidden: Disable .DS_Store file creation on network or USB volumes
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+  defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+  # Hidden: Expand Save panel by default
+  defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
+  defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
+
+  # Hidden: Expand Print panel by default
+  defaults write -g PMPrintingExpandedStateForPrint -bool true
+  defaults write -g PMPrintingExpandedStateForPrint2 -bool true
+
+  # Hidden: Automatically quit printer app once the print jobs complete
+  defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+  # Hidden: Save to disk (not to iCloud) by default
+  defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+
+  # Hidden: Disable press-and-hold for keys in favor of key repeat
+  defaults write -g ApplePressAndHoldEnabled -bool false
+
+  # Hidden: (Disable) Quick Look animation
+  defaults write -g QLPanelAnimationDuration -float 0
+
+  # Hidden: (Disable) Window animations
+  defaults write com.apple.finder DisableAllAnimations -bool true
+
+  # Hidden: Speed up Window resize animation
+  defaults write -g NSWindowResizeTime -float 0.001
+
+  # Hidden: Enable subpixel font rendering on non-Apple LCDs
+  defaults write -g AppleFontSmoothing -int 2
+
+  # Hidden: Speed up Mission Control animations
+  defaults write com.apple.dock expose-animation-duration -float 0.05
+}
+
+_keyboard() {
   # Keyboard > Keyboard > Key Repeat / Delay Until Repeat
   # 2 us the fastest in GUI, but real is 1
   defaults write -g KeyRepeat -int 1
@@ -292,12 +292,12 @@ _keyboard_setup() {
   defaults write com.apple.TextInputMenu visible -bool false
 }
 
-_mission_control_setup() {
+_mission_control() {
   # Mission Control > (Uncheck) Automatically rearrange Spaces based on most recent use
   defaults write com.apple.dock mru-spaces -bool false
 }
 
-_mouse_and_trackpad_setup() {
+_mouse_and_trackpad() {
   # Built-in trackpad:  AppleMultitouchTrackpad
   # Bluetooth trackpad: AppleBluetoothMultitouch
 
@@ -323,18 +323,18 @@ _mouse_and_trackpad_setup() {
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerVertSwipeGesture -int 2
 }
 
-_network_setup() {
+_network() {
   # Network > (Check) Show Wi-Fi status in menu bar
   # TODO: check default settings
   defaults write com.apple.controlcenter "NSStatusItem Visible WiFi" -bool true
   defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist WiFi -int 18
 }
 
-_safari_setup() {
+_safari() {
   ### TODO: SAFARI ###
 }
 
-_security_and_privacy_setup() {
+_security_and_privacy() {
   # Security & Privacy > General > Require password after sleep or screen saver begins: Immediately
   defaults write com.apple.screensaver askForPassword -int 1
   defaults write com.apple.screensaver askForPasswordDelay -int 0
@@ -361,7 +361,7 @@ _security_and_privacy_setup() {
   defaults write com.apple.AdLib forceLimitAdTracking -bool true
 }
 
-_sharing_setup() {
+_sharing() {
   # TODO: check default settings and find defaults keys for File Sharing
 
   # Sharing > (Uncheck) File sharing > Options > Share files and folders using SMB / AFP
@@ -383,7 +383,7 @@ _sharing_setup() {
   defaults write com.apple.sharingd DiscoverableMode -string "Off"
 }
 
-_siri_setup() {
+_siri() {
   # Siri > (Uncheck) Enable Ask Siri
   # TODO: check default settings
   # defaults write com.apple.assistant.support.plist "Assistant Enabled" -bool false 
@@ -392,7 +392,7 @@ _siri_setup() {
   defaults write com.apple.Siri StatusMenuVisible -bool false
 }
 
-_software_update_setup(){
+_software_update(){
   # TODO: check default settings and find defaults keys in Monterey
 
   # Software Update > Automatically keep my Mac up to date
@@ -413,7 +413,7 @@ _software_update_setup(){
   # sudo defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool true
 }
 
-_sound_setup() {
+_sound() {
   # Sound > Sound Effects > (Uncheck) Play sound on startup
   sudo nvram StartupMute=%01
 
@@ -422,16 +422,16 @@ _sound_setup() {
   defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound -int 18
 }
 
-_spotlight_setup() {
+_spotlight() {
   # Dock & Menu Bar > Spotlight > (Uncheck) Show in menu bar
   defaults write ~/Library/Preferences/ByHost/com.apple.Spotlight MenuItemHidden -bool true
 }
 
-_terminal_setup() {
+_terminal() {
   ### TODO: TERMINAL ###
 }
 
-_time_machine_setup() {
+_time_machine() {
   # Time Machine > (Uncheck) Back Up Automatically
   sudo tmutil disable
 
@@ -450,7 +450,7 @@ _time_machine_setup() {
   defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 }
 
-_users_and_groups_setup() {
+_users_and_groups() {
   # Users & Groups > Guest User > (Uncheck) Allow guests to log in to this computer
   sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
   
@@ -459,35 +459,36 @@ _users_and_groups_setup() {
 
 # TODO: Add settings for other app i.e. Chrome, iTerm2...
 
-_accessibility_setup
-_bluetooth_setup
-_desktop_and_screen_saver_setup
-_displays_setup
-_dock_and_menu_bar_setup
-_energy_saver_setup
-_extra_settings_setup
-_finder_setup
-_general_setup
-_keyboard_setup
-_mission_control_setup
-_mouse_and_trackpad_setup
-_network_setup
-# _safari_setup
-_security_and_privacy_setup
-_sharing_setup
-_siri_setup
-_software_update_setup
-_sound_setup
-_spotlight_setup
-# _terminal_setup
-_time_machine_setup
-_users_and_groups_setup
+_accessibility
+_bluetooth
+_desktop_and_screen_saver
+_displays
+_dock_and_menu_bar
+_energy_saver
+_finder
+_general
+_hidden_settings
+_keyboard
+_mission_control
+_mouse_and_trackpad
+_network
+# _safari
+_security_and_privacy
+_sharing
+_siri
+_software_update
+_sound
+_spotlight
+# _terminal
+_time_machine
+_users_and_groups
 
 # /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
 for app in "cfprefsd" \
   "Activity Monitor" \
-  "Dock" "Finder" \
+  "Dock" \
+  "Finder" \
   "Safari" \
   "SystemUIServer"; do
   killall "${app}" &> /dev/null

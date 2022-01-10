@@ -9,7 +9,7 @@ Work in progess...
 - [x] Install NodeJS
 - [x] Install Java
 - [x] Change macOS System Preferences
-- [ ] Reconfigure Terminal
+- [x] Reconfigure Terminal
 - [ ] Reconfigure VSC
 - [ ] Update README with proper instructions
 - [ ] Uninstall unwanted preinstalled apps
