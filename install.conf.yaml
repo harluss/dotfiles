@@ -9,37 +9,41 @@
 - clean: ['~']
 
 - link:
-    ~/.antigenrc: antigenrc
-    ~/.asdfrc: asdfrc
-    ~/.p10k.zsh: p10k.zsh
-    ~/.zshrc: zshrc
-    ~/.zshenv: zshenv
-    ~/.gitconfig: gitconfig
+    ~/.antigenrc: system/antigenrc
+    ~/.asdfrc: system/asdfrc
+    ~/.p10k.zsh: system/p10k.zsh
+    ~/.zshrc: system/zshrc
+    ~/.zshenv: system/zshenv
+    ~/.gitconfig: system/gitconfig
+    ~/.gitignore: system/gitignore
     ~/.config/bat:
       create: true
-      path: config/bat
+      path: system/config/bat
 
 - create:
     - ~/Code
 
 - shell:
+    - description: 'Installing xcode-select'
+      command: scripts/xcode_select.zsh
+
     - description: 'Installing Meslo Nerd Font'
-      command: cp ./fonts/*.ttf ~/Library/Fonts
+      command: cp res/fonts/*.ttf ~/Library/Fonts
 
     - description: 'Installing Homebrew with brews and casks'
-      command: ./setup_homebrew.zsh
+      command: scripts/homebrew.zsh
 
     - description: 'Installing Zsh plugins'
       command: source ~/.zshrc && antigen reset
 
-    - description: 'Setting iTerm2 preferences'
-      command: ./setup_iterm2
+    - description: 'Setting up iTerm2'
+      command: scripts/iterm2
 
-    - description: 'Installing Node and setting a global version'
-      command: ./setup_nodejs.zsh
+    # - description: 'Installing Node and setting global version'
+    #   command: scripts/nodejs.zsh
 
-    - description: 'Installing JDKs and setting a global version'
-      command: ./setup_java.zsh
+    # - description: 'Installing JDKs and setting global version'
+    #   command: scripts/java.zsh
 
-    # - description: 'Setting macOS System Preferences'
-    #   command: sudo ./setup_macos.zsh
+    # - description: 'Setting up macOS'
+    #   command: sudo scripts/macos.zsh
