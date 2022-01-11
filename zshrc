@@ -17,7 +17,7 @@ path=(
   $path
 )
 
-ANTIGEN_PATH=~/.dotfiles
+ANTIGEN_PATH=~/.dotfiles/submodules
 source $ANTIGEN_PATH/antigen/antigen.zsh
 source $(brew --prefix asdf)/libexec/asdf.sh
 
