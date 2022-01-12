@@ -26,24 +26,23 @@
 - shell:
     - description: 'Installing xcode-select'
       command: scripts/xcode_select.zsh
-
     - description: 'Installing Meslo Nerd Font'
       command: cp res/fonts/*.ttf ~/Library/Fonts
-
     - description: 'Installing Homebrew with brews and casks'
       command: scripts/homebrew.zsh
-
     - description: 'Installing Zsh plugins'
       command: source ~/.zshrc && antigen reset
-
     - description: 'Setting up iTerm2'
-      command: scripts/iterm2
+      command: scripts/iterm2.zsh
 
-    # - description: 'Installing Node and setting global version'
-    #   command: scripts/nodejs.zsh
+- link:
+    ~/Library/Application Support/Code/User/settings.json: apps/vscode/settings/settings.json
 
-    # - description: 'Installing JDKs and setting global version'
-    #   command: scripts/java.zsh
+- shell:
+    - description: 'Installing Node and setting global version'
+      command: scripts/nodejs.zsh
+    - description: 'Installing JDKs and setting global version'
+      command: scripts/java.zsh
 
     # - description: 'Setting up macOS'
     #   command: sudo scripts/macos.zsh
