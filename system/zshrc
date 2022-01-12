@@ -24,12 +24,17 @@ source $(brew --prefix asdf)/libexec/asdf.sh
 # Load Antigen config
 antigen init ~/.antigenrc
 
+# Zsh-history-substring-search configuration
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
 # Aliases
 alias exa='exa --group-directories-first --icons'
 alias exaa='exa --group-directories-first --icons -a'
 alias exal='exa --group-directories-first --icons -lh --git'
 alias exaal='exa --group-directories-first --icons -lha --git'
 alias man='batman'
+alias src='source ~/.zshrc'
 alias trail='<<<${(F)path}'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

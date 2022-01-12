@@ -30,15 +30,15 @@
       command: cp res/fonts/*.ttf ~/Library/Fonts
     - description: 'Installing Homebrew with brews and casks'
       command: scripts/homebrew.zsh
-    - description: 'Installing Zsh plugins'
-      command: source ~/.zshrc && antigen reset
-    - description: 'Setting up iTerm2'
-      command: scripts/iterm2.zsh
 
 - link:
     ~/Library/Application Support/Code/User/settings.json: apps/vscode/settings/settings.json
 
 - shell:
+    - description: 'Installing Zsh plugins'
+      command: source ~/.zshrc && antigen reset
+    - description: 'Setting up iTerm2'
+      command: scripts/iterm2.zsh
     - description: 'Installing Node and setting global version'
       command: scripts/nodejs.zsh
     - description: 'Installing JDKs and setting global version'

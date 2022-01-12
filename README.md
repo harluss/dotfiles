@@ -10,7 +10,7 @@ Work in progess...
 - [x] Install Java
 - [x] Change macOS System Preferences
 - [x] Set up Zsh and iTerm2
-- [ ] Set up VSC
+- [x] Set up VSC - not syncing extensions yet, will try VSCode's "Settings Sync" first.
 - [ ] Set up SSH fir GitHub
 - [ ] Add karabiner-elements or find alternative solution?
 - [ ] Add Mackup or other method for syncing settings of third party apps (VSC, IntelliJ, iTerm2, browsers)?
