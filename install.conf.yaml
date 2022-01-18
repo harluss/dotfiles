@@ -1,24 +1,24 @@
 - defaults:
     link:
-      relink: true
+      create: true
       force: true
+      relink: true
     shell:
-      stdout: true
       stderr: true
+      stdout: true
 
 - clean: ['~']
 
 - link:
     ~/.antigenrc: system/antigenrc
     ~/.asdfrc: system/asdfrc
-    ~/.p10k.zsh: system/p10k.zsh
-    ~/.zshrc: system/zshrc
-    ~/.zshenv: system/zshenv
+    ~/.config/bat: system/config/bat
     ~/.gitconfig: system/gitconfig
     ~/.gitignore: system/gitignore
-    ~/.config/bat:
-      create: true
-      path: system/config/bat
+    ~/.p10k.zsh: system/p10k.zsh
+    ~/.ssh/config: system/ssh/config
+    ~/.zshenv: system/zshenv
+    ~/.zshrc: system/zshrc
 
 - create:
     - ~/Code
@@ -43,6 +43,7 @@
       command: scripts/nodejs.zsh
     - description: 'Installing JDKs and setting global version'
       command: scripts/java.zsh
-
-    # - description: 'Setting up macOS'
-    #   command: sudo scripts/macos.zsh
+    - description: 'Generating new GitHub SSH key and switching remote URL from HTTPS to SSH'
+      command: scripts/ssh.zsh
+# - description: 'Setting up macOS'
+#   command: sudo scripts/macos.zsh

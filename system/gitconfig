@@ -7,3 +7,9 @@
 	ignorecase = false
 [init]
 	defaultBranch = main
+
+# check
+# pull > ff only
+# commit > message
+# core > user
+# credential > helper osxkeychain
