@@ -2,8 +2,6 @@
 
 # Note: xcode-select is required for Git and Homebrew
 
-if command_exists xcode-select; then
-  echo "Skipping install of xcode-select. It's already installed."
-else
+if ! command_exists xcode-select; then
   xcode-select --install
 fi
