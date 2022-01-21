@@ -36,6 +36,8 @@
     ~/Library/Application Support/Code/User/settings.json: apps/vscode/settings/settings.json
 
 - shell:
+    - description: 'Installing VS Code extensions'
+      command: scripts/vscode.zsh
     - description: 'Installing Zsh plugins'
       command: source ~/.zshrc && antigen reset
     - description: 'Setting up iTerm2'
