@@ -1,0 +1,36 @@
+# Docker
+# Remove stopped containers
+alias demp='docker rm -f $(docker ps -aq)'
+
+# Exa
+alias exa='exa --group-directories-first --icons'
+alias exaa='exa --group-directories-first --icons -a'
+alias exal='exa --group-directories-first --icons -lh --git'
+alias exaal='exa --group-directories-first --icons -lha --git'
+
+# Misc
+alias alf='alias | grep'
+alias man='batman'
+alias src='source ~/.zshrc'
+alias trail='<<<${(F)path}'
+# Check port (chp :8080)
+alias chp='lsof -i'
+# Find node_modules and check size
+alias chnm='find . -name "node_modules" -type d -prune -print | xargs du -chs'
+# Delete node_modules
+alias rnm='find . -name "node_modules" -type d -prune -print -exec rm -rf "{}" \;'
+
+# Asdf
+# List and switch JDKs
+jdk() {
+  if [[ ! $1 ]]; then
+		asdf list java;
+    echo "Usage: To switch to adoptopenjdk-11.xxx type jdk 11"
+		return 0
+	fi
+
+  version=$1
+  # asdf global java latest:adoptopenjdk-$1;
+  asdf global java latest:temurin-$1;
+  java -version
+}

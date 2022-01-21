@@ -10,6 +10,7 @@
 - clean: ['~']
 
 - link:
+    ~/.aliases: system/aliases
     ~/.antigenrc: system/antigenrc
     ~/.asdfrc: system/asdfrc
     ~/.config/bat: system/config/bat
