@@ -17,9 +17,8 @@ _accessibility() {
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
 
   # Accessibility > Zoom > Use scroll gesture with the (Ctrl (^)) modifier key to zoom
-  # TODO: check default setting
-  # defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-  # defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+  defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+  defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
   # Accessibility > Zoom > Advanced > Appearance > When zoomed in, the screen image moves: Only when the pointer reaches an edge
   defaults write com.apple.universalaccess closeViewPanningMode -int 1
@@ -62,30 +61,36 @@ _dock_and_menu_bar() {
   defaults write com.apple.dock show-recents -bool false
 
   # TODO: check default settings
-  # Dock & Menu Bar > Clock > Date Options: (Check) Show the day of the week
-  defaults write com.apple.menuextra.clock.plist ShowDayOfWeek -bool true
+  # # Dock & Menu Bar > Clock > Date Options: (Check) Show the day of the week
+  # defaults write com.apple.menuextra.clock.plist ShowDayOfWeek -bool true
 
-  # Dock & Menu Bar > Clock > Date Options: (Check) Show date
-  defaults write com.apple.menuextra.clock.plist ShowDayOfMonth -bool true
+  # # Dock & Menu Bar > Clock > Date Options: (Check) Show date
+  # defaults write com.apple.menuextra.clock.plist ShowDayOfMonth -bool true
 
-  # Dock & Menu Bar > Clock > Time Options: (Check) Digital
-  defaults write com.apple.menuextra.clock.plist IsAnalog -bool false
+  # # Dock & Menu Bar > Clock > Time Options: (Check) Digital
+  # defaults write com.apple.menuextra.clock.plist IsAnalog -bool false
 
-  # Dock & Menu Bar > Clock > Time Options: (Check) Use a 24-hour clock
-  defaults delete -g AppleICUForce12HourTime > /dev/null 2>&1
-  defaults write com.apple.menuextra.clock.plist Show24Hour -bool true
-  defaults write com.apple.menuextra.clock.plist ShowSeconds -bool false
+  # # Dock & Menu Bar > Clock > Time Options: (Check) Use a 24-hour clock
+  # defaults delete -g AppleICUForce12HourTime > /dev/null 2>&1
+  # defaults write com.apple.menuextra.clock.plist Show24Hour -bool true
+  # defaults write com.apple.menuextra.clock.plist ShowSeconds -bool false
 
-  # Dock & Menu Bar > Clock > (Uncheck) Show am/pm
-  # TODO: check this, should be disabled 
-  defaults write com.apple.menuextra.clock.plist ShowAMPM -bool false
+  # # Dock & Menu Bar > Clock > (Uncheck) Show am/pm
+  # # TODO: check this, should be disabled 
+  # defaults write com.apple.menuextra.clock.plist ShowAMPM -bool false
 
   # Dock & Menu Bar > Clock (date format)
   defaults write com.apple.menuextra.clock.plist DateFormat -string "EEE d MMM HH:mm"
-
+  
   # Dock & Menu Bar Extra: Right click on Downloads stack > Display as: Folder
+  # TODO: check default settings
   # Note: This works with Downloads being either the only or the first object there as it modifies the object at index 0
   /usr/libexec/PlistBuddy -c "Set :persistent-others:0:tile-data:displayas 1" ~/Library/Preferences/com.apple.dock.plist
+
+  # Dock & Menu Bar Extra: Right click on Downloads stack > View content as: List
+  # TODO: check default settings
+  # Note: This works with Downloads being either the only or the first object there as it modifies the object at index 0
+  /usr/libexec/PlistBuddy -c "Set :persistent-others:0:tile-data:showas 3" ~/Library/Preferences/com.apple.dock.plist
 
   # Dock & Menu Extra: Remove all (default) app icons from Dock
   # NOTE: This is only really useful when setting up a new Mac.
@@ -110,20 +115,17 @@ _energy_saver() {
 _finder() {
   # Finder Preferences > General > Show these items on the desktop > (Enable) Connected Servers
   # TODO: check default settings match the ones below
-  # defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
   # defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+  # defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
   # defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
   defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 
   # Finder > Preferences > General > New Finder windows show: Home
   # Macintosh HD: "Pfvo", Path: "file:///"
   # Desktop:      "PfDe", Path: "file://${HOME}/Desktop/"
-  # Documents:    "PfDo", Path: "file://${HOME}/Documents/"
-  # iCloud Drive: "PfID", Path: "file://${HOME}/Library/Mobile%20Documents/com~apple~CloudDocs/"
   # Other:        "PfLo", Path: "file:///<path>/"
   defaults write com.apple.finder NewWindowTarget -string "PfHm"
   defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
-
 
   # Finder > Preferences > Advanced > (Check) Show all file extensions
   defaults write -g AppleShowAllExtensions -bool true
@@ -179,6 +181,7 @@ _finder() {
 
   # Finder Extra: Right click on desktop > Show View Options > (Check) Show item info
   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+  # TODO: check if the keys below exist and change
   # /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
   # /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
   # OR ###
@@ -194,6 +197,12 @@ _finder() {
   /usr/libexec/PlistBuddy -c "Set :FXPreferredGroupBy Kind" ~/Library/Preferences/com.apple.finder.plist
   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:GroupBy Kind" ~/Library/Preferences/com.apple.finder.plist
   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy dateAdded" ~/Library/Preferences/com.apple.finder.plist
+
+  # Finder Extra: Expand the following File Info panes: “General”, “Open with”
+  # TODO: check defaults
+  # defaults write com.apple.finder FXInfoPanesExpanded -dict \
+  #   General -bool true \
+  #   OpenWith -bool true
 }
 
 _general() {
@@ -208,8 +217,8 @@ _general() {
   defaults write -g AppleScrollerPagingBehavior -bool true
 
   # TODO: check default settings for General > Allow Handoff between this Mac and your iCloud devices
-  # defaults -currentHost write com.apple.coreservices.useractivityd ActivityAdvertisingAllowed -bool true
-  # defaults -currentHost write com.apple.coreservices.useractivityd ActivityReceivingAllowed -bool true
+  defaults -currentHost write com.apple.coreservices.useractivityd ActivityAdvertisingAllowed -bool true
+  defaults -currentHost write com.apple.coreservices.useractivityd ActivityReceivingAllowed -bool true
 }
 
 _hidden_settings() {
@@ -251,7 +260,8 @@ _hidden_settings() {
   defaults write -g NSWindowResizeTime -float 0.001
 
   # Hidden: Enable subpixel font rendering on non-Apple LCDs
-  defaults write -g AppleFontSmoothing -int 2
+  # TODO: test
+  # defaults write -g AppleFontSmoothing -int 2
 
   # Hidden: Speed up Mission Control animations
   defaults write com.apple.dock expose-animation-duration -float 0.05
@@ -304,6 +314,8 @@ _mouse_and_trackpad() {
   # Trackpad > Point & Click > (Check) Tap to click
   defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+  defaults write -g com.apple.mouse.tapBehavior -int 1
+  defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
 
   # Trackpad > Point & Click > (Check) Secondary click
   # TODO: check as it should be set by default
