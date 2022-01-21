@@ -3,6 +3,7 @@ antigen use oh-my-zsh
 
 # Load plugins
 antigen bundles <<EOBUNDLES
+    asdf
     git
     vscode
     z
