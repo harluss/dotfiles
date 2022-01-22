@@ -54,6 +54,19 @@ _dock_and_menu_bar() {
   # Dock & Menu Bar > (Uncheck) Show recent applications in Dock
   defaults write com.apple.dock show-recents -bool false
 
+  # Dock & Menu Bar > Wi-Fi > (Check) Show Wi-Fi status in menu bar
+  # TODO: check default settings
+  defaults write com.apple.controlcenter "NSStatusItem Visible WiFi" -bool true
+  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist WiFi -int 18
+
+  # Dock & Menu Bar > Bluetooth > (Check) Show Bluetooth in menu bar
+  defaults write com.apple.controlcenter "NSStatusItem Visible Bluetooth" -bool true
+  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 18
+
+  # TODO: Dock & Menu Bar > Sound > (Check) Show in Menu Bar: Always
+  defaults write com.apple.controlcenter "NSStatusItem Visible Sound" -bool true
+  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound -int 18
+
   # TODO: check default settings
   # # Dock & Menu Bar > Clock > Date Options: (Check) Show the day of the week
   # defaults write com.apple.menuextra.clock.plist ShowDayOfWeek -bool true
@@ -75,7 +88,21 @@ _dock_and_menu_bar() {
 
   # # Dock & Menu Bar > Clock (date format)
   # defaults write com.apple.menuextra.clock.plist DateFormat -string "EEE d MMM HH:mm"
-  
+
+  # Dock & Menu Bar > Spotlight > (Uncheck) Show in menu bar
+  defaults write ~/Library/Preferences/ByHost/com.apple.Spotlight MenuItemHidden -bool true
+
+  # Dock & Menu Bar > Siri > (Uncheck) Show Siri in menu bar
+  defaults write com.apple.Siri StatusMenuVisible -bool false
+
+  # TODO: Dock & Menu Bar > Time Machine > (Uncheck) Show Siri in menu bar
+
+  # Dock & Menu Extra: Remove all (default) app icons from Dock
+  # NOTE: This is only really useful when setting up a new Mac.
+  defaults write com.apple.dock persistent-apps -array ""
+
+  # TODO: Dock & Menu Extra: Add selected apps to Dock (persistent-apps array)
+
   # Dock & Menu Bar Extra: Right click on Downloads stack > Display as: Folder
   # TODO: check default settings
   # Note: This works with Downloads being either the only or the first object there as it modifies the object at index 0
@@ -86,30 +113,6 @@ _dock_and_menu_bar() {
   # Note: This works with Downloads being either the only or the first object there as it modifies the object at index 0
   /usr/libexec/PlistBuddy -c "Set :persistent-others:0:tile-data:showas 3" ~/Library/Preferences/com.apple.dock.plist
 
-  # Dock & Menu Extra: Remove all (default) app icons from Dock
-  # NOTE: This is only really useful when setting up a new Mac.
-  defaults write com.apple.dock persistent-apps -array ""
-
-  # TODO: Dock & Menu Extra: Add selected apps to Dock (persistent-apps array)
-
-  # Dock & Menu Bar > Spotlight > (Uncheck) Show in menu bar
-  defaults write ~/Library/Preferences/ByHost/com.apple.Spotlight MenuItemHidden -bool true
-
-  # Dock & Menu Bar > Siri > (Uncheck) Show Siri in menu bar
-  defaults write com.apple.Siri StatusMenuVisible -bool false
-  
-  # Dock & Menu Bar > Bluetooth > (Check) Show Bluetooth in menu bar
-  defaults write com.apple.controlcenter "NSStatusItem Visible Bluetooth" -bool true
-  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 18
-
-  # TODO: Dock & Menu Bar > Sound > (Check) Show in Menu Bar: Always
-  defaults write com.apple.controlcenter "NSStatusItem Visible Sound" -bool true
-  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound -int 18
-
-  # Dock & Menu Bar > Network > (Check) Show Wi-Fi status in menu bar
-  # TODO: check default settings
-  defaults write com.apple.controlcenter "NSStatusItem Visible WiFi" -bool true
-  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist WiFi -int 18
 }
 
 _energy_saver() {
@@ -228,6 +231,9 @@ _general() {
   # General > Click in the scrollbar to: Jump to the spot that's clicked
   defaults write -g AppleScrollerPagingBehavior -bool true
 
+  # Generala > (Check) Ask to keep changes when closing documents
+  defaults write -g NSCloseAlwaysConfirmsChanges -bool true
+
   # TODO: check default settings for General > Allow Handoff between this Mac and your iCloud devices
   defaults -currentHost write com.apple.coreservices.useractivityd ActivityAdvertisingAllowed -bool true
   defaults -currentHost write com.apple.coreservices.useractivityd ActivityReceivingAllowed -bool true
@@ -286,6 +292,9 @@ _keyboard() {
   # 15 is the fastest in GUI, but real is 10
   defaults write -g InitialKeyRepeat -int 10
 
+  # Keyboard > Text > Clear Replace-With
+  defaults write -g NSUserDictionaryReplacementItems -array
+
   # Keyboard > Text > (Uncheck) auto correct and other substitutions
   defaults write -g NSAutomaticCapitalizationEnabled -bool false
   defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
@@ -293,7 +302,7 @@ _keyboard() {
   defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false
   defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 
-  # Keyboard > Shortcuts > Use keyboard navigation to move focus between controls
+  # Keyboard > Shortcuts > (Check) Use keyboard navigation to move focus between controls
   # TODO: check default setting
   defaults write -g AppleKeyboardUIMode -int 3
 
@@ -499,7 +508,7 @@ apps=(
 
 for app in ${apps[@]}; do
   echo "Killing: ${app}"
-  killall "${app}" &> /dev/null
+  killall ${app} &> /dev/null
 done
 
 # TODO: Add info about the need of rebooting and any additional settings that still need to be changed manually
