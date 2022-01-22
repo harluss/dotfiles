@@ -14,6 +14,7 @@
     ~/.antigenrc: system/antigenrc
     ~/.asdfrc: system/asdfrc
     ~/.config/bat: system/config/bat
+    ~/.gitcommit_template: system/gitcommit_template
     ~/.gitconfig: system/gitconfig
     ~/.gitignore: system/gitignore
     ~/.p10k.zsh: system/p10k.zsh
@@ -22,7 +23,8 @@
     ~/.zshrc: system/zshrc
 
 - create:
-    - ~/Code
+    - ~/Code/Projects
+    - ~/Code/Tutorials
 
 - shell:
     - description: 'Installing xcode-select'
@@ -46,7 +48,7 @@
       command: scripts/nodejs.zsh
     - description: 'Installing JDKs and setting global version'
       command: scripts/java.zsh
-    - description: 'Generating new GitHub SSH key and switching remote URL from HTTPS to SSH'
+    - description: 'Generating new GitHub SSH keys and switching remote URL from HTTPS to SSH'
       command: scripts/ssh.zsh
-# - description: 'Setting up macOS'
+# - description: 'Setting up macOS System Preferences'
 #   command: sudo scripts/macos.zsh

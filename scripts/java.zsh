@@ -4,8 +4,6 @@
 asdf plugin-add java
 
 # Install versions
-# asdf install java latest:adoptopenjdk-8
-# asdf install java latest:adoptopenjdk-11
 asdf install java latest:temurin-8
 asdf install java latest:temurin-11
 asdf install java latest:temurin-17
