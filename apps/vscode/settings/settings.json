@@ -22,6 +22,10 @@
 		"javascript": "javascriptreact",
 		"typescript": "typescriptreact"
 	},
+	"[git-commit]": {
+		"editor.rulers": [50, 72],
+		"workbench.editor.restoreViewState": false
+	},
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"prettier.printWidth": 120,
 	"prettier.useTabs": true,

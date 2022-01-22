@@ -27,12 +27,6 @@ _accessibility() {
   defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 }
 
-_bluetooth() {
-  # Bluetooth > (Check) Show Bluetooth in menu bar
-  defaults write com.apple.controlcenter "NSStatusItem Visible Bluetooth" -bool true
-  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 18
-}
-
 _desktop_and_screen_saver() {
   # Desktop & Screen Saver > Screen Saver > (Uncheck) Show screen saver after
   defaults -currentHost write com.apple.screensaver idleTime -int 0
@@ -79,8 +73,8 @@ _dock_and_menu_bar() {
   # # TODO: check this, should be disabled 
   # defaults write com.apple.menuextra.clock.plist ShowAMPM -bool false
 
-  # Dock & Menu Bar > Clock (date format)
-  defaults write com.apple.menuextra.clock.plist DateFormat -string "EEE d MMM HH:mm"
+  # # Dock & Menu Bar > Clock (date format)
+  # defaults write com.apple.menuextra.clock.plist DateFormat -string "EEE d MMM HH:mm"
   
   # Dock & Menu Bar Extra: Right click on Downloads stack > Display as: Folder
   # TODO: check default settings
@@ -97,6 +91,25 @@ _dock_and_menu_bar() {
   defaults write com.apple.dock persistent-apps -array ""
 
   # TODO: Dock & Menu Extra: Add selected apps to Dock (persistent-apps array)
+
+  # Dock & Menu Bar > Spotlight > (Uncheck) Show in menu bar
+  defaults write ~/Library/Preferences/ByHost/com.apple.Spotlight MenuItemHidden -bool true
+
+  # Dock & Menu Bar > Siri > (Uncheck) Show Siri in menu bar
+  defaults write com.apple.Siri StatusMenuVisible -bool false
+  
+  # Dock & Menu Bar > Bluetooth > (Check) Show Bluetooth in menu bar
+  defaults write com.apple.controlcenter "NSStatusItem Visible Bluetooth" -bool true
+  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 18
+
+  # TODO: Dock & Menu Bar > Sound > (Check) Show in Menu Bar: Always
+  defaults write com.apple.controlcenter "NSStatusItem Visible Sound" -bool true
+  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound -int 18
+
+  # Dock & Menu Bar > Network > (Check) Show Wi-Fi status in menu bar
+  # TODO: check default settings
+  defaults write com.apple.controlcenter "NSStatusItem Visible WiFi" -bool true
+  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist WiFi -int 18
 }
 
 _energy_saver() {
@@ -114,15 +127,15 @@ _energy_saver() {
 
 _finder() {
   # Finder Preferences > General > Show these items on the desktop > (Enable) Connected Servers
-  # TODO: check default settings match the ones below
   # defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
   # defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
   # defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
   defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 
   # Finder > Preferences > General > New Finder windows show: Home
-  # Macintosh HD: "Pfvo", Path: "file:///"
   # Desktop:      "PfDe", Path: "file://${HOME}/Desktop/"
+  # Home:         "PfHm", Path: "file://${HOME}/"
+  # Macintosh HD: "Pfvo", Path: "file:///"
   # Other:        "PfLo", Path: "file:///<path>/"
   defaults write com.apple.finder NewWindowTarget -string "PfHm"
   defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
@@ -140,7 +153,8 @@ _finder() {
   defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
 
   # Finder > Preferences > Advanced > When performing a search: Search the Current Folder
-  # This Mac: "SCev"
+  # Current Folder: "SCcf"
+  # This Mac:       "SCev"
   defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
   # Finder > View Menu > (Check) Show Status Bar
@@ -150,7 +164,8 @@ _finder() {
   defaults write com.apple.finder ShowPathbar -bool true
 
   # Finder > View Menu > View Options > (Check) Always open in list view
-  # Column view: "clmv"
+  # Column view:  "clmv"
+  # List view:    "Nlsv"
   defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
   # TODO: find defatults key for Finder > View Menu > View Options > Calculate all size
@@ -209,9 +224,6 @@ _general() {
   # General > Appearance: Dark
   defaults write -g AppleInterfaceStyle -string "Dark"
   defaults delete -g AppleInterfaceStyleSwitchesAutomatically > /dev/null 2>&1
-
-  # General > Show scroll bars: Always
-  defaults write -g AppleShowScrollBars -string "Always"
 
   # General > Click in the scrollbar to: Jump to the spot that's clicked
   defaults write -g AppleScrollerPagingBehavior -bool true
@@ -335,21 +347,15 @@ _mouse_and_trackpad() {
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerVertSwipeGesture -int 2
 }
 
-_network() {
-  # Network > (Check) Show Wi-Fi status in menu bar
-  # TODO: check default settings
-  defaults write com.apple.controlcenter "NSStatusItem Visible WiFi" -bool true
-  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist WiFi -int 18
-}
-
 _safari() {
   ### TODO: SAFARI ###
 }
 
 _security_and_privacy() {
-  # Security & Privacy > General > Require password after sleep or screen saver begins: Immediately
+  # Security & Privacy > General > Require password after sleep or screen saver begins: 5 seconds
+  # TODO: check
   defaults write com.apple.screensaver askForPassword -int 1
-  defaults write com.apple.screensaver askForPasswordDelay -int 0
+  defaults write com.apple.screensaver askForPasswordDelay -int 5
 
   # Security & Privacy > General > (Check) Disable automatic login
   sudo defaults write /Library/Preferences/com.apple.loginwindow.plist autoLoginUser 0
@@ -395,15 +401,6 @@ _sharing() {
   defaults write com.apple.sharingd DiscoverableMode -string "Off"
 }
 
-_siri() {
-  # Siri > (Uncheck) Enable Ask Siri
-  # TODO: check default settings
-  # defaults write com.apple.assistant.support.plist "Assistant Enabled" -bool false 
-
-  # Siri > (Uncheck) Show Siri in menu bar
-  defaults write com.apple.Siri StatusMenuVisible -bool false
-}
-
 _software_update(){
   # TODO: check default settings and find defaults keys in Monterey
 
@@ -428,15 +425,6 @@ _software_update(){
 _sound() {
   # Sound > Sound Effects > (Uncheck) Play sound on startup
   sudo nvram StartupMute=%01
-
-  # Sound > Show volume in menu bar
-  defaults write com.apple.controlcenter "NSStatusItem Visible Sound" -bool true
-  defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound -int 18
-}
-
-_spotlight() {
-  # Dock & Menu Bar > Spotlight > (Uncheck) Show in menu bar
-  defaults write ~/Library/Preferences/ByHost/com.apple.Spotlight MenuItemHidden -bool true
 }
 
 _terminal() {
@@ -469,40 +457,48 @@ _users_and_groups() {
   # TODO: check default settings for Users & Groups > Login Options > (Uncheck) Automatic login / Display login windows as (List of users) / (Disable) Show fast user switching menu as
 }
 
-# TODO: Add settings for other app i.e. Chrome, iTerm2...
-
-_accessibility
-_bluetooth
-_desktop_and_screen_saver
-_displays
-_dock_and_menu_bar
-_energy_saver
-_finder
-_general
-_hidden_settings
-_keyboard
-_mission_control
-_mouse_and_trackpad
-_network
-# _safari
-_security_and_privacy
-_sharing
-_siri
-_software_update
-_sound
-_spotlight
-# _terminal
-_time_machine
-_users_and_groups
+# TODO: Add settings for other app i.e. Brave, Firefox, Safari(?), Terminal (?)
 
 # /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
-for app in "cfprefsd" \
-  "Activity Monitor" \
-  "Dock" \
-  "Finder" \
-  "Safari" \
-  "SystemUIServer"; do
+settings=(
+  _accessibility
+  _bluetooth
+  _desktop_and_screen_saver
+  _displays
+  _dock_and_menu_bar
+  _energy_saver
+  _finder
+  _general
+  _hidden_settings
+  _keyboard
+  _mission_control
+  _mouse_and_trackpad
+  # _safari
+  _security_and_privacy
+  _sharing
+  _software_update
+  _sound
+  # _terminal
+  _time_machine
+  _users_and_groups
+)
+
+for setting in ${settings[@]}; do
+  echo "Setting up: ${setting}"
+  ${setting}
+done
+
+apps=(
+  "cfprefsd"
+  "Dock"
+  "Finder"
+  "Safari"
+  "SystemUIServer"
+)
+
+for app in ${apps[@]}; do
+  echo "Killing: ${app}"
   killall "${app}" &> /dev/null
 done
 
