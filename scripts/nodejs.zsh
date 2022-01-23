@@ -8,3 +8,5 @@ asdf install nodejs lts
 
 # Set global version
 asdf global nodejs lts
+
+# TODO: install yarn --without-node

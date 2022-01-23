@@ -10,17 +10,17 @@
 - clean: ['~']
 
 - link:
-    ~/.aliases: system/aliases
-    ~/.antigenrc: system/antigenrc
-    ~/.asdfrc: system/asdfrc
-    ~/.config/bat: system/config/bat
-    ~/.gitcommit_template: system/gitcommit_template
-    ~/.gitconfig: system/gitconfig
-    ~/.gitignore: system/gitignore
-    ~/.p10k.zsh: system/p10k.zsh
-    ~/.ssh/config: system/ssh/config
-    ~/.zshenv: system/zshenv
-    ~/.zshrc: system/zshrc
+    ~/.aliases: config/aliases
+    ~/.antigenrc: config/antigenrc
+    ~/.asdfrc: config/asdfrc
+    ~/.config/bat: config/config/bat
+    ~/.gitcommit_template: config/gitcommit_template
+    ~/.gitconfig: config/gitconfig
+    ~/.gitignore: config/gitignore
+    ~/.p10k.zsh: config/p10k.zsh
+    ~/.ssh/config: config/ssh/config
+    ~/.zshenv: config/zshenv
+    ~/.zshrc: config/zshrc
 
 - create:
     - ~/Code/Projects
@@ -29,6 +29,8 @@
 - shell:
     - description: 'Installing xcode-select'
       command: scripts/xcode_select.zsh
+    - description: 'Cloning submodules'
+      command: git submodule update --init #--recursive
     - description: 'Installing Meslo Nerd Font'
       command: cp res/fonts/*.ttf ~/Library/Fonts
     - description: 'Installing Homebrew with brews and casks'
