@@ -16,7 +16,7 @@ _set_system_preferences() {
 }
 
 _kill_apps() {
-  apps=(
+  local apps=(
     "cfprefsd"
     "Dock"
     "Finder"
