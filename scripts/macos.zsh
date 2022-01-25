@@ -25,7 +25,7 @@ _kill_apps() {
   )
 
   for app in ${apps[@]}; do
-    echo "Killing: ${app}"
+    echo "Restarting: ${app}"
     # killall ${app} &> /dev/null
   done
 }

@@ -8,6 +8,7 @@ _manage_dock_items() {
     "/Applications/Firefox.app"
     "/Applications/Visual Studio Code.app"
     # "/Applications/IntelliJ IDEA.app"
+    "/Applications/DBeaver.app"
     "/Applications/Postman.app"
     "/Applications/Spotify.app"
     "/Applications/iTerm.app"
@@ -19,7 +20,7 @@ _manage_dock_items() {
 
   # Add only selected apps
   for app in ${dockApps[@]}; do
-    echo ${app}
+    echo "Adding to Dock: ${app}"
     # $dockutil --no-restart --add ${app}
   done
 

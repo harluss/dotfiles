@@ -58,8 +58,9 @@ defaults write ~/Library/Preferences/ByHost/com.apple.Spotlight MenuItemHidden -
 # Dock & Menu Bar > Siri > (Uncheck) Show Siri in menu bar
 defaults write com.apple.Siri StatusMenuVisible -bool false
 
-# TODO: Dock & Menu Bar > Time Machine > (Uncheck) Show Siri in menu bar
+# TODO: Dock & Menu Bar > Time Machine > (Uncheck) Show Time Machine in menu bar
 
 # Dock & Menu Extra: Remove all (default) app icons from Dock
 # NOTE: This is only really useful when setting up a new Mac.
+# NOTE2: Currently handled by dockutil
 # defaults write com.apple.dock persistent-apps -array ""
