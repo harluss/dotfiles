@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-SSH_KEY_FILE=~/.ssh/github_ed25519
+SSH_KEY_FILE=~/.ssh/id_ed25519_github
 
 _generate_ssh_keys() {
   if [[ ! -f ${SSH_KEY_FILE} ]]; then
@@ -12,7 +12,7 @@ _generate_ssh_keys() {
     eval "$(ssh-agent -s)"
 
     # Add generated SSH private key to ssh-agent
-    ssh-add -K ${SSH_KEY_FILE} && echo "Added SSH private key to ssh-agent"
+    ssh-add --apple-use-keychain ${SSH_KEY_FILE} && echo "Added SSH private key to ssh-agent"
   fi
 }
 
