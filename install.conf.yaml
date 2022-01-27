@@ -28,16 +28,16 @@
     - ~/Code/Tutorials
 
 - shell:
-    - description: 'Checking App Store signin'
+    - description: 'Signing in to App Store'
       command: scripts/appstore.zsh
-    - description: 'Installing xcode-select'
-      command: scripts/xcode_select.zsh
-    - description: 'Cloning submodules'
-      command: git submodule update --init --recursive
-    - description: 'Installing Meslo Nerd Font'
-      command: cp res/fonts/*.ttf ~/Library/Fonts
-    - description: 'Installing Homebrew with brews and casks'
-      command: scripts/homebrew.zsh
+        - description: 'Installing xcode-select'
+          command: scripts/xcode_select.zsh
+        - description: 'Cloning submodules'
+          command: git submodule update --init --recursive
+        - description: 'Installing Meslo Nerd Font'
+          command: cp res/fonts/*.ttf ~/Library/Fonts
+        - description: 'Installing Homebrew with brews and casks'
+          command: scripts/homebrew.zsh
 
 - link:
     ~/Library/Application Support/Code/User/settings.json: apps/vscode/settings/settings.json
@@ -53,6 +53,8 @@
       command: scripts/nodejs.zsh
     - description: 'Installing JDKs and setting global version'
       command: scripts/java.zsh
+    - description: 'Setting default browser'
+      command: scripts/browser.zsh "Brave Browser"
     - description: 'Generating new GitHub SSH keys and switching remote URL from HTTPS to SSH'
       command: scripts/ssh.zsh
 # - description: 'Setting up macOS System Preferences'
