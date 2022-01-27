@@ -5,6 +5,7 @@
       relink: true
     shell:
       stderr: true
+      stdin: true
       stdout: true
 
 - clean: ['~']
@@ -27,10 +28,12 @@
     - ~/Code/Tutorials
 
 - shell:
+    - description: 'Checking App Store signin'
+      command: scripts/appstore.zsh
     - description: 'Installing xcode-select'
       command: scripts/xcode_select.zsh
     - description: 'Cloning submodules'
-      command: git submodule update --init #--recursive
+      command: git submodule update --init --recursive
     - description: 'Installing Meslo Nerd Font'
       command: cp res/fonts/*.ttf ~/Library/Fonts
     - description: 'Installing Homebrew with brews and casks'
