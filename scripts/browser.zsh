@@ -2,10 +2,7 @@
 
 source scripts/utils.zsh
 
-NEW_BROWSER=$1
+NEW_BROWSER=${1:-"Brave Browser"}
 
-if [[ ! ${NEW_BROWSER} ]]; then
-  exit 0
-fi
-
-yes_no_loop 'open -a "${NEW_BROWSER}" -W' "Default browser will be used to sign in to GitHub." "Open ${NEW_BROWSER}? If you say no, Safari will remain the default one." "Set ${NEW_BROWSER} as default, turn on sync and quit the browser to continue."
+ask_for_confirmation "Default browser will be used to sign in to GitHub. Open ${NEW_BROWSER}?" \
+'open_app_and_wait ${NEW_BROWSER} "Set ${NEW_BROWSER} as the default browser, turn on sync and quit the app to continue..."'

@@ -1,19 +1,30 @@
 #!/usr/bin/env zsh
 
-yes_no_loop() {
-  COMMAND=$1
-  MESSAGE_TITLE=$2
-  MESSAGE_OPEN=$3
-  MESSAGE_YES=$4
-
-  echo ${MESSAGE_TITLE}
+ask_for_confirmation() {
+  local CONFIRM_MESSAGE=$1
+  local COMMAND=$2
 
   while true; do
-    read "ANSWER?${MESSAGE_OPEN} [y/n]: "
+    read "ANSWER?${CONFIRM_MESSAGE} [y/n]: "
     case ${ANSWER} in
-      [Yy]) echo ${MESSAGE_YES}; eval ${COMMAND}; break;;
+      [Yy]) eval ${COMMAND}; break;;
       [Nn]) break;;
       *) echo "Incorrect answer.";;
     esac
   done
+}
+
+open_app() {
+  open -a $1
+}
+
+open_app_and_wait() {
+  local APP_TO_OPEN=$1
+  local WAIT_MESSAGE=${2:-"Quit the app to continue..."}
+
+  echo ${WAIT_MESSAGE} && open -a ${APP_TO_OPEN} -W
+}
+
+press_enter_to_continue() {
+  read "?Press [Enter] to continue..."
 }
