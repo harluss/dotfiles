@@ -55,4 +55,5 @@ _setup_ssh_and_gh_cli() {
   _test_ssh
 }
 
-ask_for_confirmation "Git - Do you want to set up SSH?" _setup_ssh_and_gh_cli
+# ask_for_confirmation "Git - Do you want to set up SSH?" _setup_ssh_and_gh_cli
+echo "test"
