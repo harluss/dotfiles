@@ -4,3 +4,6 @@
 [submodule "submodules/antigen"]
 	path = submodules/antigen
 	url = https://github.com/zsh-users/antigen.git
+[submodule "submodules/dockutil"]
+	path = submodules/dockutil
+	url = https://github.com/kcrawford/dockutil.git

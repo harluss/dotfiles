@@ -1,6 +1,9 @@
 # Docker
 # Remove stopped containers
-alias demp='docker rm -f $(docker ps -aq)'
+alias dps='docker ps'
+alias dpsq='docker ps -q'
+alias drms='docker rm -f $(docker ps -aq)'
+alias drsr='docker restart $(docker ps -q)'
 
 # Exa
 alias exa='exa --group-directories-first --icons'
@@ -10,6 +13,7 @@ alias exaal='exa --group-directories-first --icons -lha --git'
 
 # Misc
 alias alf='alias | grep'
+alias clr='clear'
 alias man='batman'
 alias src='source ~/.zshrc'
 alias trail='<<<${(F)path}'

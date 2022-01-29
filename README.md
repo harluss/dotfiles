@@ -16,3 +16,5 @@ Work in progess...
 - [ ] Add Mackup or other method for syncing settings of third party apps (VSC, IntelliJ, iTerm2, browsers)?
 - [ ] Update README with proper instructions
 - [ ] Uninstall unwanted preinstalled apps - check "mas uninstall <app>"
+
+git clone --recursive [URL to Git repo]

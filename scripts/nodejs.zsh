@@ -1,10 +1,17 @@
 #!/usr/bin/env zsh
 
-# Install the plugin
-asdf plugin-add nodejs
+_install_nodejs() {
+  asdf plugin-add nodejs
+  asdf install nodejs lts
+  asdf global nodejs lts
+}
 
-# Install versions
-asdf install nodejs lts
+_install_yarn() {
+  asdf plugin-add yarn
+  asdf install yarn latest
+  asdf global yarn latest
+}
 
-# Set global version
-asdf global nodejs lts
+# TODO: when adding profiles, add optional installation based on profile
+_install_nodejs
+_install_yarn
