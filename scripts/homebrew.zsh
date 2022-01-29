@@ -10,4 +10,5 @@ brew analytics off
 # It's currently exported in zshrc:
 # export HOMEBREW_CASK_OPTS="--no-quarantine"
 # https://github.com/Homebrew/homebrew-bundle/issues/474
+# TODO: when adding profiles, add additional Brewfile per profile
 brew bundle #--verbose

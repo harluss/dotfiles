@@ -16,6 +16,7 @@ _dropbox() {
   ask_for_confirmation "Dropbox - Open the app, so you can sign in and sync files?" 'open_app "Dropbox" && press_enter_to_continue'
 }
 
+# TODO: when adding profiles, add optional installation based on profile
 _setup_other_apps() {
   _browser
   _one_password

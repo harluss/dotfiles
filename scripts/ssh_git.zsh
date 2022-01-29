@@ -5,6 +5,8 @@ source scripts/utils.zsh
 SSH_KEY_FILE=~/.ssh/id_ed25519_${1:-"github"}
 GIT_SERVICE_URL=${2:-"https://github.com/settings/keys"}
 
+# TODO: when adding profiles, add an option to use different git name and email (either from env or user input)
+
 _generate_ssh_keys() {
   if [[ -f ${SSH_KEY_FILE} ]]; then
     return 0
@@ -55,5 +57,4 @@ _setup_ssh_and_gh_cli() {
   _test_ssh
 }
 
-# ask_for_confirmation "Git - Do you want to set up SSH?" _setup_ssh_and_gh_cli
-echo "test"
+ask_for_confirmation "Git - Do you want to set up SSH?" _setup_ssh_and_gh_cli

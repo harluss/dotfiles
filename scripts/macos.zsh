@@ -11,7 +11,7 @@ osascript -e 'tell application "System Preferences" to quit'
 _set_system_preferences() {
   for script in macos/*; do
     echo "Setting up: ${script}"
-    # ${script}
+    ${script}
   done
 }
 
@@ -26,7 +26,7 @@ _kill_apps() {
 
   for app in ${apps[@]}; do
     echo "Restarting: ${app}"
-    # killall ${app} &> /dev/null
+    killall ${app} &> /dev/null
   done
 }
 
