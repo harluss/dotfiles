@@ -56,6 +56,6 @@
     - description: 'Setting default browser'
       command: scripts/browser.zsh "Brave Browser"
     - description: 'Generating new Git SSH keys and switching remote URL from HTTPS to SSH'
-      command: scripts/ssh.zsh
+      command: scripts/ssh_git.zsh
 # - description: 'Setting up macOS System Preferences'
 #   command: sudo scripts/macos.zsh
