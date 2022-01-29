@@ -26,5 +26,5 @@ open_app_and_wait() {
 }
 
 press_enter_to_continue() {
-  read "?Press [Enter] to continue..."
+  read "?Press [Enter] when you're ready to continue..."
 }
