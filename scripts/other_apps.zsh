@@ -2,8 +2,8 @@
 
 source scripts/utils.zsh
 
-_one_password() {
-  ask_for_confirmation "1Password - Open the app, so you can sign in?" 'open_app "1Password 7" && press_enter_to_continue'
+_alfred() {
+  ask_for_confirmation "Alfred - Open the app, so you can add your licence and sync settings with Dropbox?" 'open_app "Alfred 4" && press_enter_to_continue'
 }
 
 _browser() {
@@ -16,6 +16,10 @@ _dropbox() {
   ask_for_confirmation "Dropbox - Open the app, so you can sign in and sync files?" 'open_app "Dropbox" && press_enter_to_continue'
 }
 
+_one_password() {
+  ask_for_confirmation "1Password - Open the app, so you can sign in?" 'open_app "1Password 7" && press_enter_to_continue'
+}
+
 _rectangle() {
   ask_for_confirmation "Rectangle - Open the app, so you can set it up?" 'open_app "Rectangle" && press_enter_to_continue'
 }
@@ -26,6 +30,7 @@ _setup_other_apps() {
   _one_password
   _dropbox
   _rectangle
+  _alfred
 }
 
 ask_for_confirmation "Do you want to set up other apps?" _setup_other_apps
