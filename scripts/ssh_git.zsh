@@ -20,7 +20,7 @@ _generate_ssh_keys() {
 }
 
 _setup_github_cli() {
-  if command_exists gh; then
+  if ! command_exists gh; then
     _copy_key_and_paste_in_browser
     return 0
   fi
