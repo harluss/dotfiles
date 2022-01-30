@@ -16,11 +16,16 @@ _dropbox() {
   ask_for_confirmation "Dropbox - Open the app, so you can sign in and sync files?" 'open_app "Dropbox" && press_enter_to_continue'
 }
 
+_rectangle() {
+  ask_for_confirmation "Rectangle - Open the app, so you can set it up?" 'open_app "Rectangle" && press_enter_to_continue'
+}
+
 # TODO: when adding profiles, add optional installation based on profile
 _setup_other_apps() {
   _browser
   _one_password
   _dropbox
+  _rectangle
 }
 
 ask_for_confirmation "Do you want to set up other apps?" _setup_other_apps

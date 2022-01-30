@@ -53,6 +53,8 @@
       command: scripts/nodejs.zsh
     - description: 'Installing JDKs and setting global version'
       command: scripts/java.zsh
+    - description: 'Setting other apps'
+      command: scripts/other_apps.zsh
     - description: 'Setting Git SSH'
       command: scripts/ssh_git.zsh
 # - description: 'Setting up macOS System Preferences'
