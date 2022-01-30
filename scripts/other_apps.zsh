@@ -16,6 +16,14 @@ _dropbox() {
   ask_for_confirmation "Dropbox - Open the app, so you can sign in and sync files?" 'open_app "Dropbox" && press_enter_to_continue'
 }
 
+_iterm() {
+  ask_for_confirmation "iTerm - Open the app, co you can set it up as the default Term?" 'open_app "iTerm" && press_enter_to_continue'
+}
+
+_jetbrains_toolbox() {
+  ask_for_confirmation "JetBrains Toolbox - Open the app, so you can sign in and download apps?" 'open_app "JetBrains Toolbox" && press_enter_to_continue'
+}
+
 _one_password() {
   ask_for_confirmation "1Password - Open the app, so you can sign in?" 'open_app "1Password 7" && press_enter_to_continue'
 }
@@ -29,6 +37,8 @@ _setup_other_apps() {
   _browser
   _one_password
   _dropbox
+  _jetbrains_toolbox
+  _iterm
   _rectangle
   _alfred
 }
