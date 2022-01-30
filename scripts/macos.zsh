@@ -1,12 +1,8 @@
 #!/usr/bin/env zsh
 
-# TODO: Add env file for variables, ask on start?
+source scripts/utils.zsh
 
-# Close any open System Preferences panes, to prevent them from overriding new settings
 osascript -e 'tell application "System Preferences" to quit'
-
-# TODO: Add settings for: Brave, Displays (Night Shift), Firefox, Safari(?), Terminal (?)
-# TODO: Add conditional settings for laptop: Energy Saver (Battery), Keyboard (Illumination), Screen (Brightness)
 
 _set_system_preferences() {
   for script in macos/*; do
@@ -30,7 +26,10 @@ _kill_apps() {
   done
 }
 
-_set_system_preferences
-_kill_apps
+_setup_macos() {
+  _set_system_preferences
+  _kill_apps
+  ask_for_confirmation "Reboot is required for some changes to take effect. Reboot now?" 'sudo reboot'
+}
 
-# TODO: Add info about the need of rebooting and any additional settings that still need to be changed manually
+ask_for_confirmation "Do you want to set up macOS System Preferences?" '_setup_macos'
