@@ -42,17 +42,19 @@ Keep in mind these are my settings and your mileage may vary...
 - [ ] Check intellij Settings Sync.
 - [ ] Check VSCode Settings Sync.
 - [ ] Automate Rectangle's setup using defaults.
+- [ ] Automate Brave's setup using defaults.
+- [ ] Automate Firefox's setup using defaults.
 - [ ] Fix and expand automation of macOS System Preferences.
 - [ ] Ask for git username and password before GitHub SSH setup.
 - [ ] Ask for computer name (System Preferences)?
-- [ ] Add `./install` profiles i.e. home and work, that would handle setups differently.
+- [ ] Add `install.conf.yaml` profiles i.e. home and work, that would handle setups differently.
 - [ ] Add conditional settings for laptop i.e. battery power management (System Preferences).
-- [ ] Keep and eye on MAS auth status.
+- [ ] Keep and eye on [mas account doesn't work on macOS 12 and later](https://github.com/mas-cli/mas/issues/417).
 - [ ] Uninstall unwanted Apple software i.e. Garageband.
-- [ ] Try karabiner-elements or better touch tool or hyperkey app.
-- [ ] Try aldente.
-- [ ] Try keyboard maestro.
-- [ ] Try little snitch.
+- [ ] Try [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) or [Better Touch Tool](https://folivora.ai/) or [Hyperkey](https://hyperkey.app/).
+- [ ] Try [Aldente](https://github.com/davidwernhart/AlDente).
+- [ ] Try [Keyboard Maestro](https://www.keyboardmaestro.com/main/).
+- [ ] Try [Little Snitch](https://www.obdev.at/support/littlesnitch).
 
 ## Before clean install
 
