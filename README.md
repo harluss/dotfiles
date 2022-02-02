@@ -7,20 +7,25 @@ And it worked! Well most of it worked... It still needs some tweaks here and the
 
 Keep in mind these are my settings and your mileage may vary...
 
-[The script will](https://github.com/harluss/dotfiles/tree/readme#the-script-will)
-
-[To do before next time](https://github.com/harluss/dotfiles/tree/readme#to-do-before-the-next-time)
-
-[Before clean install](https://github.com/harluss/dotfiles/tree/readme#before-clean-install)
-
-[After clean install](https://github.com/harluss/dotfiles/tree/readme#after-clean-install)
+- [The script will](https://github.com/harluss/dotfiles/tree/readme#the-script-will)
+- [To do before next time](https://github.com/harluss/dotfiles/tree/readme#to-do-before-the-next-time)
+- [Before clean install](https://github.com/harluss/dotfiles/tree/readme#before-clean-install)
+  - [Backup/Sync stuff](https://github.com/harluss/dotfiles/tree/readme#backupsync-stuff)
+  - [Deactivate licenses](https://github.com/harluss/dotfiles/tree/readme#deactivate-licenses)
+  - [If selling Mac](https://github.com/harluss/dotfiles/tree/readme#if-selling-mac)
+- [After clean install](https://github.com/harluss/dotfiles/tree/readme#after-clean-install)
+  - [Run the script](https://github.com/harluss/dotfiles/tree/readme#run-the-script)
+  - [Next steps](https://github.com/harluss/dotfiles/tree/readme#next-steps)
+    - [System Preferences](https://github.com/harluss/dotfiles/tree/readme#system-preferences)
+    - [Brave](https://github.com/harluss/dotfiles/tree/readme#brave)
+    - [Firefox](https://github.com/harluss/dotfiles/tree/readme#firefox)
 
 ## The script will:
 
 - Create all hyperlinks to dotfiles from `config/` setting up shell and git.
-- Create `Code` folder and subfolders.
-- Install `Meslo Nerd Font` font - used by iTerm.
-- Install `Homebrew` with brews and casks from `Brewfile`.
+- Create Code folder and subfolders.
+- Install Meslo Nerd Font font - used by iTerm.
+- Install Homebrew with brews and casks from `Brewfile`.
 - Create hyperlink to VSCode's settings in `apps/vscode/settings/`.
 - Install VSCode's extensions from `apps/vscode/extensions/`.
 - Install Zsh plugins.
@@ -274,7 +279,7 @@ Will Reebot...
 - `Extensions > React Dev Tools (enable in Incognito mode)`
 - `Extensions > Redux Dev Tools (enable in Incognito mode)`
 
-**NOTE**: Sync is broken on macOS - iOS, keep an eye on updates. Until then, bookmarks must be imported manually.
+**Note:** Sync is broken on macOS - iOS, keep an eye on updates. Until then, bookmarks must be imported manually.
 
 #### Firefox
 
