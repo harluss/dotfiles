@@ -8,8 +8,11 @@ And it worked! Well most of it worked... It still needs some tweaks here and the
 Keep in mind these are my settings and your mileage may vary...
 
 [The script will](https://github.com/harluss/dotfiles/tree/readme#the-script-will)
+
 [To do before next time](https://github.com/harluss/dotfiles/tree/readme#to-do-before-the-next-time)
+
 [Before clean install](https://github.com/harluss/dotfiles/tree/readme#before-clean-install)
+
 [After clean install](https://github.com/harluss/dotfiles/tree/readme#after-clean-install)
 
 ## The script will:
@@ -69,6 +72,7 @@ Keep in mind these are my settings and your mileage may vary...
 ### Run the script
 
 **Note:** Initial system setup should take care of `iCloud`, `Theme`, `Siri`, `Time Machine`, `Analytics`, `Find My`, etc.
+
 **Open Terminal and run**
 
 ```
@@ -270,7 +274,7 @@ Will Reebot...
 - `Extensions > React Dev Tools (enable in Incognito mode)`
 - `Extensions > Redux Dev Tools (enable in Incognito mode)`
 
-**_NOTE_**: Sync is broken on macOS - iOS, keep an eye on updates. Until then, bookmarks must be imported manually.
+**NOTE**: Sync is broken on macOS - iOS, keep an eye on updates. Until then, bookmarks must be imported manually.
 
 #### Firefox
 
