@@ -1,4 +1,4 @@
-# .dotfiles for macOS
+# .dotfiles for macOS Monterey
 
 Dotfiles for my Mac Mini running macOS Monterey 12.2.
 
@@ -6,6 +6,11 @@ I wanted to automate the tedious process of setting up a new machine or an old o
 And it worked! Well most of it worked... It still needs some tweaks here and there, but for the most part it worked well.
 
 Keep in mind these are my settings and your mileage may vary...
+
+[The script will](https://github.com/harluss/dotfiles/tree/readme#the-script-will)
+[To do before next time](https://github.com/harluss/dotfiles/tree/readme#to-do-before-the-next-time)
+[Before clean install](https://github.com/harluss/dotfiles/tree/readme#before-clean-install)
+[After clean install](https://github.com/harluss/dotfiles/tree/readme#after-clean-install)
 
 ## The script will:
 
@@ -23,7 +28,7 @@ Keep in mind these are my settings and your mileage may vary...
 - Log you into GitHub CLI using SSH and change the cloned `.dotfiles` repo from HTTPS to SSH.
 - Setup macOS System Preferences and Dock applications.
 
-## This to do before the next time:
+## To do before the next time:
 
 - [ ] Check Brave Sync Chain.
 - [ ] Check intellij Settings Sync.
@@ -53,11 +58,11 @@ Keep in mind these are my settings and your mileage may vary...
 
 ### Deactivate licenses:
 
-- Alfred: `Preferences > Powerpack > View your license key > Deactivate`
+- Alfred: `Preferences > Powerpack > View your license key > Deactivate`.
 
 ### If selling Mac:
 
-- iCloud: `System Preferences > Apple ID > Overview > Sign Out`
+- iCloud: `System Preferences > Apple ID > Overview > Sign Out`.
 
 ## After clean install
 
@@ -73,7 +78,8 @@ git
 It should trigger a popup asking if you want to install `command line developer tools`.
 
 - Click `install`.
-  **Clone this repo**
+
+**Clone this repo**
 
 ```
 git clone https://github.com/harluss/dotfiles.git ~/.dotfiles
@@ -86,14 +92,16 @@ cd ~/.dotfiles
 ```
 
 - Make sure to update your **email** and **user** in `config/gitconfig` before next step!
-  **Run the script**
+
+**Run the script**
 
 ```
 ./install
 ```
 
 - You will be asked for password and permissions in the process.
-  **Type `y` when prompted**
+
+**Type `y` when prompted**
 
 ```
 Open App Store, so you can sign in? [y/n]:
@@ -242,44 +250,45 @@ Will Reebot...
 
 #### Brave
 
-`Get started > Profile name and icon: <YOUR_NAME>`
-`Get started > Set as default browser`
-`Appearance > Hide Brave Rewards button: Check`
-`Appearance > Always show bookmarks on new tab page: Uncheck`
-`Appearance > Always show full URLs: Check`
-`New tab page > New tab page shows: Blank page`
-`Shields > Default view: Advanced view`
-`Shields > Trackers & ads blocking: Aggressive`
-`Fingerprinting blocking: Strict`
-`Social media blocking > Allow Giigke login buttons on third-part sites: Uncheck`
-`Social media blocking > Allow Facebook logins and embedded posts: Uncheck`
-`Social media blocking > Allow Twitter embedded tweets: Uncheck`
-`Security and privacy > Allow privacy-preserving product analytics (P3A): Uncheck`
-`Security and privacy > Automatically send daily usage ping to Brave: Uncheck`
-`Security and privacy > Security > Always use secure connections: Check`
-`Search engine > Search engine used in the address bar: DuckduckGo`
-`Wallet > Show Brave Wallet icon on Toolbar: Uncheck`
-`Extensions > React Dev Tools (enable in Incognito mode)`
-`Extensions > Redux Dev Tools (enable in Incognito mode)`
+- `Get started > Profile name and icon: <YOUR_NAME>`
+- `Get started > Set as default browser`
+- `Appearance > Hide Brave Rewards button: Check`
+- `Appearance > Always show bookmarks on new tab page: Uncheck`
+- `Appearance > Always show full URLs: Check`
+- `New tab page > New tab page shows: Blank page`
+- `Shields > Default view: Advanced view`
+- `Shields > Trackers & ads blocking: Aggressive`
+- `Fingerprinting blocking: Strict`
+- `Social media blocking > Allow Giigke login buttons on third-part sites: Uncheck`
+- `Social media blocking > Allow Facebook logins and embedded posts: Uncheck`
+- `Social media blocking > Allow Twitter embedded tweets: Uncheck`
+- `Security and privacy > Allow privacy-preserving product analytics (P3A): Uncheck`
+- `Security and privacy > Automatically send daily usage ping to Brave: Uncheck`
+- `Security and privacy > Security > Always use secure connections: Check`
+- `Search engine > Search engine used in the address bar: DuckduckGo`
+- `Wallet > Show Brave Wallet icon on Toolbar: Uncheck`
+- `Extensions > React Dev Tools (enable in Incognito mode)`
+- `Extensions > Redux Dev Tools (enable in Incognito mode)`
+
 **_NOTE_**: Sync is broken on macOS - iOS, keep an eye on updates. Until then, bookmarks must be imported manually.
 
 #### Firefox
 
-`General > Browsing > Recommend extensions as you browse: Uncheck`
-`General > Browsing > Recommend features as you browse: Uncheck`
-`General > Network Settings > Enable DNS over HTTPS: Check`
-`Home > Homepage and new windows: blank page`
-`Home > New tabs: blank page`
-`Preferences > Search > Default Search Engine: DuckduckGo`
-`Preferences > Search > Search Suggestions: Uncheck`
-`Preferences > Search > Search Shortcuts: Remove unwanted ones (Bing, Chambers, eBay)`
-`Preferences > Privacy & Security > Custom > Cookies: All third party cookies`
-`Preferences > Privacy & Security > Send web sites a "Do Not Track" signal...: Always`
-`Preferences > Privacy & Security > Firefox Data Collection > Allow Firefox to send technical...: Uncheck`
-`Preferences > Privacy & Security > Firefox Data Collection > Allow Firefox to install and run studies: Uncheck`
-`Preferences > Privacy & Security > HTTPS-Only Mode > Enable HTTPS-Only Mode in all windows: Check`
-`Toolbar > Right click on "Save to Pocket" > Remove from Toolbar`
-`Extensions > uBlock Origin vs Ghostery`
-`Extensions > Firefox Containers`
-`Extensions > React Dev Tools`
-`Extensions > Redux Dev Tools`
+- `General > Browsing > Recommend extensions as you browse: Uncheck`
+- `General > Browsing > Recommend features as you browse: Uncheck`
+- `General > Network Settings > Enable DNS over HTTPS: Check`
+- `Home > Homepage and new windows: blank page`
+- `Home > New tabs: blank page`
+- `Preferences > Search > Default Search Engine: DuckduckGo`
+- `Preferences > Search > Search Suggestions: Uncheck`
+- `Preferences > Search > Search Shortcuts: Remove unwanted ones (Bing, Chambers, eBay)`
+- `Preferences > Privacy & Security > Custom > Cookies: All third party cookies`
+- `Preferences > Privacy & Security > Send web sites a "Do Not Track" signal...: Always`
+- `Preferences > Privacy & Security > Firefox Data Collection > Allow Firefox to send technical...: Uncheck`
+- `Preferences > Privacy & Security > Firefox Data Collection > Allow Firefox to install and run studies: Uncheck`
+- `Preferences > Privacy & Security > HTTPS-Only Mode > Enable HTTPS-Only Mode in all windows: Check`
+- `Toolbar > Right click on "Save to Pocket" > Remove from Toolbar`
+- `Extensions > uBlock Origin vs Ghostery`
+- `Extensions > Firefox Containers`
+- `Extensions > React Dev Tools`
+- `Extensions > Redux Dev Tools`
