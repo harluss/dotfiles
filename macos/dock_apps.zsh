@@ -4,13 +4,12 @@ _manage_dock_items() {
   local dockutil=$(pwd)/submodules/dockutil/scripts/dockutil
   local dockApps=(
     "/Applications/Brave Browser.app"
-    "/Applications/Firefox.app"
     "/Applications/Visual Studio Code.app"
     "/Applications/DBeaver.app"
     "/Applications/Postman.app"
     "/Applications/Spotify.app"
+    "/Applications/VLC.app"
     "/Applications/iTerm.app"
-    "/Applications/Bear.app"
   )
 
   $dockutil --no-restart --remove all

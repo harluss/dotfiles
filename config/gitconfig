@@ -1,8 +1,6 @@
 [user]
 	email = 26788867+harluss@users.noreply.github.com
 	name = harluss
-[commit]
-	template = ~/.gitcommit_template
 [core]
 	excludesfile = ~/.gitignore
 	editor = code --wait

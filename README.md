@@ -39,11 +39,14 @@ Keep in mind these are my settings and your mileage may vary...
 ## To do before the next time:
 
 - [ ] Check Brave Sync Chain.
-- [ ] Check intellij Settings Sync.
+- [ ] Check Intellij Settings Sync.
 - [ ] Check VSCode Settings Sync.
-- [ ] Automate Rectangle's setup using defaults.
 - [ ] Automate Brave's setup using defaults.
 - [ ] Automate Firefox's setup using defaults.
+- [ ] Automate Karabiner-Elements's setup using defaults.
+- [ ] Automate Keyboard Maestro's setup using defaults.
+- [ ] Automate Raycast's setup using defaults.
+- [ ] Automate Rectangle's setup using defaults.
 - [ ] Fix and expand automation of macOS System Preferences.
 - [ ] Ask for git username and password before GitHub SSH setup.
 - [ ] Ask for computer name (System Preferences)?
@@ -51,24 +54,28 @@ Keep in mind these are my settings and your mileage may vary...
 - [ ] Add conditional settings for laptop i.e. battery power management (System Preferences).
 - [ ] Keep and eye on [mas account doesn't work on macOS 12 and later](https://github.com/mas-cli/mas/issues/417).
 - [ ] Uninstall unwanted Apple software i.e. Garageband.
-- [ ] Try [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) or [Better Touch Tool](https://folivora.ai/) or [Hyperkey](https://hyperkey.app/).
 - [ ] Try [Aldente](https://github.com/davidwernhart/AlDente).
-- [ ] Try [Keyboard Maestro](https://www.keyboardmaestro.com/main/).
 - [ ] Try [Little Snitch](https://www.obdev.at/support/littlesnitch).
+- [ ] Find alternative to 1Password?
+- [ ] Test and update MacOS settings on Ventura.
+- [ ] Test on Apple silicon.
 
 ## Before clean install
 
 ### Backup/Sync stuff:
 
 - Backup whatever files need backing up.
-- Brave - export bookmarks (currently Sync Chain between macOS and iOS only syncs bookmarks and even that is broken).
-- IntelliJ - export settings.
-- VSCode - extensions: `code --list-extensions > ~/.dotfiles/apps/vscode/extensions/extensions.list`.
+- Brave Browser - export bookmarks (currently Sync Chain between macOS and iOS only syncs bookmarks and even that is broken).
 - Brewfile - update brews and casks: `brew bundle dump --file=~/.dotfiles/Brewfile`.
+- IntelliJ - export settings.
+- Karabiner Elements - export settings.
+- Keyboard Maestro - export settings.
+- Raycast - export settings.
+- VSCode - extensions: `code --list-extensions > ~/.dotfiles/apps/vscode/extensions/extensions.list`.
 
 ### Deactivate licenses:
 
-- Alfred: `Preferences > Powerpack > View your license key > Deactivate`.
+...
 
 ### If selling Mac:
 
@@ -135,17 +142,10 @@ Brave Browser - Open the app, so you can set it as the default browser and sync 
 - Keep in mind Sync Chain is broken atm, so import bookmarks and change browser settings manually.
 
 ```
-1Password - Open the app, so you can sign in? [y/n]
-```
-
-- Sign in.
-- Add your account: `Preferences > Accounts > +`.
-
-```
 Dropbox - Open the app, so you can sign in and sync files? [y/n]
 ```
 
-- Sign in (Alfred's settings are stored here).
+...
 
 ```
 JetBrains Toolbox - Open the app, so you can sign in and download apps? [y/n]
@@ -165,14 +165,6 @@ Rectangle - Open the app, so you can set it up? [y/n]
 ```
 
 - Select `Spectacle` style shortcuts.
-- Unbind `Center` shortcut - interferes with Alfred's `Clipboard History`.
-
-```
-Alfred - Open the app, so you can add your licence and sync settings with Dropbox? [y/n]
-```
-
-- Add your license: `Preferences > Powerpack > View your license key > Activate`.
-- Load settings: `Preferences > Advanced > Set preferences folder` and point it to dotfiles folder on Dropbox.
 
 ```
 Git - Do you want to set up SSH? [y/n]
@@ -195,6 +187,26 @@ Reboot is required for some changes to take effect. Reboot now? [y/n]
 Will Reebot...
 
 ### Next steps
+
+Brave Browser:
+
+- Import settings: `Settings > Get Started > Import Bookmarks & Settings`
+
+Karabiner-Elements:
+
+- Import settings: `Preferences > Misc > Export & Import`
+
+Keyboard Maestro:
+
+- Import macros: `File > Import > Import Macros`
+
+Raycast:
+
+- Import settings: `Settings > Advanced > Import`
+
+Rectangle:
+
+- Import settings: `Preferences > Import`
 
 #### System Preferences
 
@@ -222,7 +234,7 @@ Will Reebot...
 - [x] `Dock & Menu Bar > Siri > Show in Menu Bar: Uncheck`
 - [x] `Dock & Menu Bar > Time Machine > Show in Menu Bar: Uncheck`
 - [x] `Mission Control > Automatically rearrange Spaces based on most recent use: Uncheck`
-- [ ] `Notifications & Focus > Notifications`
+- [ ] `Notifications & Focus > Notifications > Check settings`
 - [ ] `Accessibility > Pointer Control > Trackpad Options > Enable dragging > three finger drag`
 - [ ] `Accessibility > Zoom > Use scroll gesture with the (Ctrl (^)) modifier key to zoom`
 - [ ] `Accessibility > Zoom > Advanced > Appearance > When zoomed in, the screen image moves: Only when the pointer reaches an edge`
@@ -231,7 +243,7 @@ Will Reebot...
 - [ ] `Security & Privacy > Firewall > Firewall Options > Automatically allow builtin soft to receive incloming connections: Uncheck`
 - [ ] `Security & Privacy > Firewall > Firewall Options > Automatically allow downloaded soft to receive incloming connections: Uncheck`
 - [ ] `Security & Privacy > Firewall > Firewall Options > Enable stealth mode: Check`
-- [ ] `Security & Privacy > Privacy > Advertising: Limit ad tracking: Check`
+- [x] `Security & Privacy > Privacy > Advertising: Limit ad tracking: Check`
 - [ ] `Security & Privacy > Privacy > Check permissions`
 - [ ] `Sharing > Computer Name:`
 - [ ] `Network > Advanced > DNS: 1.1.1.1 / 1.0.0.1 / 8.8.8.8 / 8.8.4.4`
@@ -241,7 +253,7 @@ Will Reebot...
 - [x] `Trackpad > Point & Click > Tap to click: Check`
 - [x] `Trackpad > More Gestures > App Expose: Check (Swipe down with four fingers)`
 - [ ] `Displays > Night Shift > Sunset to Sunrise`
-- [ ] `Energy Saver > Wake for network access: Uncheck`
+- [x] `Energy Saver > Wake for network access: Uncheck`
 - [x] `Energy Saver > Prevent computer from sleeping automatically when the display is off: Uncheck`
 - [x] `Finder > Preferences > General > New Finder windows show: Home`
 - [x] `Finder > Preferences > General > Show these items on the desktop > Connected Servers: Check`
@@ -266,6 +278,7 @@ Will Reebot...
 - `Appearance > Hide Brave Rewards button: Check`
 - `Appearance > Always show bookmarks on new tab page: Uncheck`
 - `Appearance > Always show full URLs: Check`
+- `Appearance > Show warning before quitting with Cmd+Q: Check`
 - `New tab page > New tab page shows: Blank page`
 - `Shields > Default view: Advanced view`
 - `Shields > Trackers & ads blocking: Aggressive`
@@ -299,7 +312,7 @@ Will Reebot...
 - `Preferences > Privacy & Security > Firefox Data Collection > Allow Firefox to install and run studies: Uncheck`
 - `Preferences > Privacy & Security > HTTPS-Only Mode > Enable HTTPS-Only Mode in all windows: Check`
 - `Toolbar > Right click on "Save to Pocket" > Remove from Toolbar`
-- `Extensions > uBlock Origin vs Ghostery`
+- `Extensions > uBlock Origin`
 - `Extensions > Firefox Containers`
 - `Extensions > React Dev Tools`
 - `Extensions > Redux Dev Tools`

@@ -1,11 +1,12 @@
 aaron-bond.better-comments
 dbaeumer.vscode-eslint
-dsznajder.es7-react-js-snippets
 eamodio.gitlens
+EditorConfig.EditorConfig
 esbenp.prettier-vscode
-jpoissonnier.vscode-styled-components
 mikestead.dotenv
 ms-azuretools.vscode-docker
+ms-python.python
+ms-python.vscode-pylance
 patbenatar.advanced-new-file
 PKief.material-icon-theme
 redhat.java
