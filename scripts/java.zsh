@@ -15,5 +15,5 @@ _install_maven() {
 }
 
 _install_java
-
 # TODO: when adding profiles, add optional installation based on profile
+_install_maven

@@ -18,7 +18,6 @@ Keep in mind these are my settings and your mileage may vary...
   - [Next steps](https://github.com/harluss/dotfiles/tree/readme#next-steps)
     - [System Preferences](https://github.com/harluss/dotfiles/tree/readme#system-preferences)
     - [Brave](https://github.com/harluss/dotfiles/tree/readme#brave)
-    - [Firefox](https://github.com/harluss/dotfiles/tree/readme#firefox)
 
 ## The script will:
 
@@ -42,7 +41,6 @@ Keep in mind these are my settings and your mileage may vary...
 - [ ] Check Intellij Settings Sync.
 - [ ] Check VSCode Settings Sync.
 - [ ] Automate Brave's setup using defaults.
-- [ ] Automate Firefox's setup using defaults.
 - [ ] Automate Karabiner-Elements's setup using defaults.
 - [ ] Automate Keyboard Maestro's setup using defaults.
 - [ ] Automate Raycast's setup using defaults.
@@ -295,24 +293,3 @@ Rectangle:
 - `Extensions > Redux Dev Tools (enable in Incognito mode)`
 
 **Note:** Sync is broken on macOS - iOS, keep an eye on updates. Until then, bookmarks must be imported manually.
-
-#### Firefox
-
-- `General > Browsing > Recommend extensions as you browse: Uncheck`
-- `General > Browsing > Recommend features as you browse: Uncheck`
-- `General > Network Settings > Enable DNS over HTTPS: Check`
-- `Home > Homepage and new windows: blank page`
-- `Home > New tabs: blank page`
-- `Preferences > Search > Default Search Engine: DuckduckGo`
-- `Preferences > Search > Search Suggestions: Uncheck`
-- `Preferences > Search > Search Shortcuts: Remove unwanted ones (Bing, Chambers, eBay)`
-- `Preferences > Privacy & Security > Custom > Cookies: All third party cookies`
-- `Preferences > Privacy & Security > Send web sites a "Do Not Track" signal...: Always`
-- `Preferences > Privacy & Security > Firefox Data Collection > Allow Firefox to send technical...: Uncheck`
-- `Preferences > Privacy & Security > Firefox Data Collection > Allow Firefox to install and run studies: Uncheck`
-- `Preferences > Privacy & Security > HTTPS-Only Mode > Enable HTTPS-Only Mode in all windows: Check`
-- `Toolbar > Right click on "Save to Pocket" > Remove from Toolbar`
-- `Extensions > uBlock Origin`
-- `Extensions > Firefox Containers`
-- `Extensions > React Dev Tools`
-- `Extensions > Redux Dev Tools`

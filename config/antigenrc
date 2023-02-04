@@ -5,7 +5,6 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
     asdf
     docker
-    gcloud
     git
     vscode
     z

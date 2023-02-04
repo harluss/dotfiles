@@ -9,14 +9,11 @@ fi
 export HOMEBREW_CASK_OPTS='--no-quarantine'
 # Set bat as default package for redirection (instead of cat)
 export NULLCMD=bat
-# Disable Pact telemetry
-export pact_do_not_track=true
 
 # Add locations to $path array and eliminate duplicates
 typeset -U path
 path=(
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-  "/usr/local/anaconda3/bin"
   $path
 )
 
