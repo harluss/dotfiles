@@ -18,7 +18,7 @@ alias man='batman'
 alias src='source ~/.zshrc'
 alias trail='<<<${(F)path}'
 # Check port (chp :8080)
-alias chp='lsof -i'
+alias chp="lsof -i:$1"
 # Find node_modules and check size
 alias chnm='find . -name "node_modules" -type d -prune -print | xargs du -chs'
 # Delete node_modules
@@ -29,11 +29,10 @@ alias rmnm='find . -name "node_modules" -type d -prune -print -exec rm -rf "{}" 
 jdk() {
   if [[ ! $1 ]]; then
 		asdf list java
-    echo "Usage: To switch to temurin-11.xxx type jdk 11"
+    echo "Usage: To switch to temurin-11.0.14+9 type jdk temurin-11.0.14+9"
 		return 0
 	fi
 
-  version=$1
-  asdf global java latest:temurin-$1
+  asdf global java $1
   java -version
 }

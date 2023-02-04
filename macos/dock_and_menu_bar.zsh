@@ -6,7 +6,7 @@ defaults write com.apple.dock largesize -int 64
 defaults write com.apple.dock magnification -bool true
 
 # Dock & Menu Bar > Position on screen: Left
-defaults write com.apple.dock orientation -string "left"
+# defaults write com.apple.dock orientation -string "left"
 
 # Dock & Menu Bar > Minimize windows using: Scale effect
 defaults write com.apple.dock mineffect -string "scale"
@@ -24,3 +24,9 @@ defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound 
 
 # Dock & Menu Bar > Spotlight > (Uncheck) Show in menu bar
 defaults write ~/Library/Preferences/ByHost/com.apple.Spotlight MenuItemHidden -bool true
+
+# Wipe all (default) app icons from the Dock
+# defaults write com.apple.dock persistent-apps -array
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true

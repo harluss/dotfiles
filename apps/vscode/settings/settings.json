@@ -38,6 +38,9 @@
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"window.zoomLevel": 0.5,
 	"workbench.iconTheme": "material-icon-theme",
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.enableExperiments": false
+	"workbench.startupEditor": "newUntitledFile",
+	"workbench.enableExperiments": false,
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.python"
+	}
 }
