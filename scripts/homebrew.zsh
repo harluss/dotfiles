@@ -3,7 +3,10 @@
 if ! command_exists brew; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  # Required by Homebrew on Apple silicon
+  if [[ $(sysctl -n machdep.cpu.brand_string) =~ ^Apple ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
 fi
 
 brew analytics off

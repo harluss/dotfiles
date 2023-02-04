@@ -17,8 +17,11 @@ path=(
   $path
 )
 
-# Uncomment this 'eval' on Apple silicon
-# eval "$(/opt/homebrew/bin/brew shellenv)"
+# Required by Homebrew on Apple silicon
+if [[ $(sysctl -n machdep.cpu.brand_string) =~ ^Apple ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 source ~/.dotfiles/submodules/antigen/antigen.zsh
 source $(brew --prefix asdf)/libexec/asdf.sh
 source ~/.aliases
