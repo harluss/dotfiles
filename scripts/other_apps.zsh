@@ -8,16 +8,8 @@ _browser() {
   ask_for_confirmation "${NEW_BROWSER} - Open the app, so you can set it as the default browser and sync settings?." 'open_app ${NEW_BROWSER} && press_enter_to_continue'
 }
 
-_dropbox() {
-  ask_for_confirmation "Dropbox - Open the app, so you can sign in and sync files?" 'open_app "Dropbox" && press_enter_to_continue'
-}
-
 _iterm() {
   ask_for_confirmation "iTerm - Open the app, co you can set it up as the default Term?" 'open_app "iTerm" && press_enter_to_continue'
-}
-
-_jetbrains_toolbox() {
-  ask_for_confirmation "JetBrains Toolbox - Open the app, so you can sign in and download apps?" 'open_app "JetBrains Toolbox" && press_enter_to_continue'
 }
 
 _rectangle() {
@@ -27,8 +19,6 @@ _rectangle() {
 # TODO: when adding profiles, add optional installation based on profile
 _setup_other_apps() {
   _browser
-  _dropbox
-  _jetbrains_toolbox
   _iterm
   _rectangle
 }

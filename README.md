@@ -31,7 +31,8 @@ Keep in mind these are my settings and your mileage may vary...
 - Sync iTerm settings from `apps/iterm2/settings/`.
 - Install NodeJS.
 - Install JDKs.
-- Help you setup Brave, 1Password, Dropbox, JetBrains Toolbox, iTerm, Rectangle and Alfred.
+- Install Python.
+- Help you setup Brave, iTerm, Rectangle.
 - Log you into GitHub CLI using SSH and change the cloned `.dotfiles` repo from HTTPS to SSH.
 - Setup macOS System Preferences and Dock applications.
 
@@ -138,19 +139,6 @@ Brave Browser - Open the app, so you can set it as the default browser and sync 
 
 - Set as Default Browser (will be used to setup SSH with GitHub).
 - Keep in mind Sync Chain is broken atm, so import bookmarks and change browser settings manually.
-
-```
-Dropbox - Open the app, so you can sign in and sync files? [y/n]
-```
-
-...
-
-```
-JetBrains Toolbox - Open the app, so you can sign in and download apps? [y/n]
-```
-
-- Sign in.
-- Download IntelliJ.
 
 ```
 iTerm - Open the app, co you can set it up as the default Term? [y/n]
@@ -281,7 +269,7 @@ Rectangle:
 - `Shields > Default view: Advanced view`
 - `Shields > Trackers & ads blocking: Aggressive`
 - `Fingerprinting blocking: Strict`
-- `Social media blocking > Allow Giigke login buttons on third-part sites: Uncheck`
+- `Social media blocking > Allow Google login buttons on third-part sites: Uncheck`
 - `Social media blocking > Allow Facebook logins and embedded posts: Uncheck`
 - `Social media blocking > Allow Twitter embedded tweets: Uncheck`
 - `Security and privacy > Allow privacy-preserving product analytics (P3A): Uncheck`

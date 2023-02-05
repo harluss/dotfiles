@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+# Example usage:
+# ask_for_confirmation "JetBrains Toolbox - Open the app, so you can sign in and download apps?" 'open_app "JetBrains Toolbox" && press_enter_to_continue'
 ask_for_confirmation() {
   local CONFIRM_MESSAGE=$1
   local COMMAND=$2

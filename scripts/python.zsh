@@ -2,8 +2,8 @@
 
 _install_python() {
   asdf plugin-add python
-  asdf install python 3.11.1
-  asdf global python 3.11.1
+  asdf install python latest
+  asdf global python latest
 }
 
 # TODO: when adding profiles, add optional installation based on profile
