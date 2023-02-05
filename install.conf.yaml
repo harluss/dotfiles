@@ -15,7 +15,6 @@
     ~/.antigenrc: config/antigenrc
     ~/.asdfrc: config/asdfrc
     ~/.config/bat: config/config/bat
-    ~/.gitcommit_template: config/gitcommit_template
     ~/.gitconfig: config/gitconfig
     ~/.gitignore: config/gitignore
     ~/.p10k.zsh: config/p10k.zsh

@@ -26,7 +26,7 @@ defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound 
 defaults write ~/Library/Preferences/ByHost/com.apple.Spotlight MenuItemHidden -bool true
 
 # Wipe all (default) app icons from the Dock
-# defaults write com.apple.dock persistent-apps -array
+defaults write com.apple.dock persistent-apps -array
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
